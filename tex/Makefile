@@ -1,8 +1,10 @@
 DOCS=transpose
 SOURCE=$(DOC).tex
-DVIFOLDER=../dvis
+DVIFOLDER=../dvi
 PDFFILE=$(DOC).pdf
 DVIFILE=$(DVIFOLDER)/$(DOC).dvi
+
+RESIDUEFORMAT=aux lof log lot toc
 
 all:
 	for DOC in $(DOCS); do \
@@ -16,5 +18,13 @@ $(PDFFILE):
 	make DOC=$$DOC $(DVIFILE)
 
 $(DVIFILE):
+	mkdir $(DVIFOLDER)
 	latex $(SOURCE)
+	latex $(SOURCE)
+	make cleanresidue
+	mv $(DOC).dvi $(DVIFILE)
 
+cleanresidue:
+	for FORMAT in $(RESIDUEFORMAT); do \
+	  rm -f $(DOC).$$FORMAT; \
+	done
