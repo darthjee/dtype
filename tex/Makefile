@@ -9,6 +9,10 @@ PDFFILE=$(PDFFOLDER)/$(DOC).pdf
 DVIFILE=$(DVIFOLDER)/$(DOC).dvi
 PSFILE=$(PSFOLDER)/$(DOC).ps
 
+DVIREQ=$(SOURCE) $(DOC)/*.tex
+PSREQ=$(DVIFILE) $(SOURCE)
+PDFREQ=$(PSREQ) $(PSFILE)
+
 MAKEDIR=mkdir -p
 
 RESIDUEFORMAT=aux lof log lot toc
@@ -21,17 +25,17 @@ all:
 build_$(DOC):
 	make DOC=$$DOC $(PDFFILE);
 
-$(PDFFILE):
+$(PDFFILE): $(PDFREQ)
 	$(MAKEDIR) $(PDFFOLDER)
 	make DOC=$$DOC $(PSFILE)
 	ps2pdf $(PSFILE) $(PDFFILE)
 
-$(PSFILE):
+$(PSFILE): $(PSREQ)
 	$(MAKEDIR) $(PSFOLDER)
 	make DOC=$$DOC $(DVIFILE)
 	dvips $(DVIFILE) -o $(PSFILE)
 
-$(DVIFILE):
+$(DVIFILE): $(DVIREQ)
 	$(MAKEDIR) $(DVIFOLDER)
 	latex $(SOURCE)
 	latex $(SOURCE)
