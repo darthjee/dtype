@@ -1,8 +1,11 @@
 DOCS=transpose
 SOURCE=$(DOC).tex
+
 DVIFOLDER=../dvi
 PSFOLDER=../ps
-PDFFILE=$(DOC).pdf
+PDFFOLDER=../pdf
+
+PDFFILE=$(PDFFOLDER)/$(DOC).pdf
 DVIFILE=$(DVIFOLDER)/$(DOC).dvi
 PSFILE=$(PSFOLDER)/$(DOC).ps
 
@@ -12,14 +15,16 @@ RESIDUEFORMAT=aux lof log lot toc
 
 all:
 	for DOC in $(DOCS); do \
-	  make DOC=$$DOC pdf; \
+	  make DOC=$$DOC build_$$DOC; \
 	done
 
-pdf:
-	make DOC=$$DOC $(PDFFILE)
+build_$(DOC):
+	make DOC=$$DOC $(PDFFILE);
 
 $(PDFFILE):
+	$(MAKEDIR) $(PDFFOLDER)
 	make DOC=$$DOC $(PSFILE)
+	ps2pdf $(PSFILE) $(PDFFILE)
 
 $(PSFILE):
 	$(MAKEDIR) $(PSFOLDER)
