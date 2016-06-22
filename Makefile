@@ -1,4 +1,4 @@
-TASKS=data tex
+TASKS=data gnuplot tex
 
 all:
 	for TASK in $(TASKS); do \
