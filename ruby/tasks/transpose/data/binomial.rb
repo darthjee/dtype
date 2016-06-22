@@ -1,4 +1,4 @@
-class Runner::Transpose::Data::Binomial < Runner
+class Transpose::Data::Binomial
   def run
     prepare
     data.each do |key, value|
