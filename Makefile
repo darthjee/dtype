@@ -1,7 +1,10 @@
-ALL=tex
+TASKS=data tex
 
 all:
-	for DIR in $(ALL); do \
-	  cd $$DIR; make; \
+	for TASK in $(TASKS); do \
+	  make TASK=$$TASK build_$$TASK; \
 	done
+
+build_$(TASK):
+	  cd $$TASK; make;
 
