@@ -10,8 +10,8 @@ DVIFILE=$(DVIFOLDER)/$(DOC).dvi
 PSFILE=$(PSFOLDER)/$(DOC).ps
 
 DVIREQ=$(SOURCE) $(DOC)/*.tex
-PSREQ=$(DVIFILE) $(SOURCE)
-PDFREQ=$(PSREQ) $(PSFILE)
+PSREQ=$(DVIFILE)
+PDFREQ=$(PSFILE)
 
 MAKEDIR=mkdir -p
 
@@ -23,7 +23,9 @@ all:
 	done
 
 build_$(DOC):
-	make DOC=$$DOC $(PDFFILE);
+	make DOC=$$DOC $(DVIFILE)
+	make DOC=$$DOC $(PSFILE)
+	make DOC=$$DOC $(PDFFILE)
 
 $(PDFFILE): $(PDFREQ)
 	$(MAKEDIR) $(PDFFOLDER)
