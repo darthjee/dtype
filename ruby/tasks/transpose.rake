@@ -3,13 +3,20 @@ require './tasks/transpose/data'
 require './tasks/transpose/data/binomial'
 
 namespace :transpose do
-  task :all do
-    Rake::Task['transposition:data'].execute
-  end
+  namespace :data do
+    task :all do
+      Rake::Task['transposition:data'].execute
+    end
 
-  desc 'Creates transposition data'
-  task :data do
-    Transpose::Data.new.run
+    desc 'List all datas to be processed'
+    task :list do
+      puts Transpose::Data::TASKS
+    end
+
+    desc 'Creates transposition data'
+    task :binomial do
+      Transpose::Data.new.run
+    end
   end
 end
 
