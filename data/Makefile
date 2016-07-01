@@ -4,6 +4,7 @@ RUNNER=rake
 TASK_REPORTS=data
 REPORT=data
 REPORT_FILE=$(TASK)/$(REPORT).dat
+REPORT_REQUIREMENTS=''
 
 all:
 	for TASK in $(TASKS); do \
@@ -17,11 +18,17 @@ build_$(TASK):
 	TASK_REPORTS=$$($(RUNNER) $(TASK):data:list); \
 	cd $$OLD_DIR; \
 	for REPORT in $$TASK_REPORTS; do \
-	  REPORT_FILE=$(TASK)/$$REPORT.dat; \
-	  make TASK=$(TASK) REPORT=$$REPORT $$REPORT_FILE; \
+	  make TASK=$(TASK) REPORT=$$REPORT build_$(TASK)_$$REPORT; \
 	done
 
-$(REPORT_FILE):
+build_$(TASK)_$(REPORT):
+	OLD_DIR=$$(pwd); \
+	cd $(RUBYDIR); \
+	REPORT_REQUIREMENT=$$($(RUNNER) $(TASK):data:$(REPORT):requirements); \
+	cd $$OLD_DIR; \
+	make TASK=$(TASK) REPORT=$(REPORT) $(REPORT_FILE) REPORT_REQUIREMENS="$$REPORT_REQUIREMENT"
+
+$(REPORT_FILE): $(REPORT_REQUIREMENS)
 	cd $(RUBYDIR); \
 	$(RUNNER) $(TASK):data:$(REPORT)
 	

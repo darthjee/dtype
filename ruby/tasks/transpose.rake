@@ -17,6 +17,14 @@ namespace :transpose do
     task :binomial do
       Transpose::Data.new.run
     end
+
+    namespace :binomial do
+      desc 'List binomial requirements'
+      task :requirements do
+        requirements =  Transpose::Data::Binomial::REQUIREMENTS + [ 'tasks/transpose/data/binomial.rb' ]
+        puts requirements.map { |r| "../ruby/#{r}" }
+      end
+    end
   end
 end
 

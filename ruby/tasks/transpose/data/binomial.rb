@@ -1,4 +1,6 @@
 class Transpose::Data::Binomial
+  REQUIREMENTS=[]
+
   def run
     prepare
     data.each do |key, value|
