@@ -9,7 +9,7 @@ all:
 
 build_$(DIR):
 	for SCRIPT in $(DIR)/*.gnu ; do \
-	  if [ -a $$SCRIPT ]; then \
+	  if [ -r $$SCRIPT ]; then \
 	    TARGET=$$(cat $$SCRIPT | grep out | grep .eps); \
 	    TARGET=$${TARGET#*\"}; \
 	    TARGET=$${TARGET%\"*}; \
@@ -19,4 +19,19 @@ build_$(DIR):
 
 $(OUT): $(IN)
 	gnuplot $(IN)
+
+clean:
+	for DIR in $(FOLDERS); do \
+	  make DIR=$$DIR clean_$$DIR; \
+	done
+
+clean_$(DIR):
+	for SCRIPT in $(DIR)/*.gnu ; do \
+	  if [ -r $$SCRIPT ]; then \
+	    TARGET=$$(cat $$SCRIPT | grep out | grep .eps); \
+	    TARGET=$${TARGET#*\"}; \
+	    TARGET=$${TARGET%\"*}; \
+	    rm -f  $$TARGET; \
+	  fi \
+	done
 
