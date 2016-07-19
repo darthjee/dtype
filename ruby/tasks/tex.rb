@@ -8,7 +8,15 @@ class Tex
     @variables = variables
   end
 
+  def build
+    output_file.write erb_builder.result
+  end
+
   private
+
+  def output_file
+    @output_file ||= File.open(output, 'w')
+  end
 
   def erb_builder
     @erb_builder ||= ErbBuilder.new(input_stream, variables)
