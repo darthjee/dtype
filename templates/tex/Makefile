@@ -24,3 +24,17 @@ build_$(TARGET):
 $(OUT): $(IN) $(REQUIREMENTS)
 	cd $(RUBYDIR); \
 	$(RUNNER) tex:build[$(TARGET),$(IN),$(OUT)]
+
+clean:
+	for TARGET in $(TARGETS); do \
+	  make TARGET=$$TARGET clean_$$TARGET; \
+	done
+
+clean_$(TARGET):
+	CURRENTDIR=$$(pwd); \
+	PARENTDIR=$${CURRENTDIR%/*}; \
+	PARENTDIR=$${PARENTDIR%/*}; \
+	TEXDIR=$$PARENTDIR/tex; \
+	OUT=$$TEXDIR/$(TARGET).tex; \
+	rm -f $$OUT
+
