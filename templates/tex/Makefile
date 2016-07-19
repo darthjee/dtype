@@ -15,7 +15,7 @@ build_$(TARGET):
 	TEXDIR=$$PARENTDIR/tex; \
 	OUT=$$TEXDIR/$(TARGET).tex; \
 	IN=doc.tex.erb; \
-	make TARGET=$(TARGET) OUT=$$OUT IN=$$IN $$OUT
+	make TARGET=$(TARGET) OUT=$$OUT IN=$$CURRENTDIR/$$IN $$OUT
 
 $(OUT): $(IN)
 	cd $(RUBYDIR); \
