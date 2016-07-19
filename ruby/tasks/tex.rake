@@ -10,5 +10,12 @@ namespace :tex do
 
     Tex::Transpose.new(input, output).build
   end
+
+  desc 'return the requirements for tex building'
+  task :requirements, [:name] do |_task, args|
+    name = args[:name]
+    requirements =  [ "lib/#{name}.rb" ]
+    puts requirements.map { |r| "../../ruby/#{r}" }
+  end
 end
 
