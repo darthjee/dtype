@@ -48,3 +48,8 @@ cleanresidue:
 	for FORMAT in $(RESIDUEFORMAT); do \
 	  rm -f $(DOC).$$FORMAT; \
 	done
+
+clean:
+	rm -rf $(PDFFOLDER)
+	rm -rf $(PSFOLDER)
+	rm -rf $(DVIFOLDER)
