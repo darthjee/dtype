@@ -27,7 +27,11 @@
 \paperheight = 297mm % a4
 \paperwidth = 210mm % a4
                                                                               
-\input{transpose/title.tex}
+\title{\huge{<%= @title %>}}
+\author{{\bf Fernando Vicente Marques Favini} \\
+\footnotesize{<%= @foot %>}}
+\date{\today}
+
 																								                                                                                
 %--- DEFINICOES ---
 \numberwithin{equation}{section}
@@ -39,10 +43,10 @@
                                                                
 %--- ESTILO DA PAGINA ---
 \pagestyle{fancy} % fancy,plain,empty,headings
-\lhead{Transposiçao de distribuiçao Quadrada em distribuiçao normal}
+\lhead{<%= @title %>}
 \chead{}
 \rhead{\leftmark} % numero e titulo da section
-\lfoot{Estudos para R-Type}
+\lfoot{<%= @foot %>}
 \cfoot{}
 \rfoot{\thepage} % numero da pagina
 \renewcommand{\headrulewidth}{0.4pt}

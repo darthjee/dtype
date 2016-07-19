@@ -18,7 +18,7 @@ class ErbBuilder
   end
 
   def result
-    erb.result
+    erb.result binding
   end
 
   private
