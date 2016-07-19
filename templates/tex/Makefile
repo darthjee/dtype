@@ -1,3 +1,5 @@
+RUBYDIR=../../ruby
+RUNNER=rake
 TARGETS=transpose
 DIR=
 
@@ -13,7 +15,8 @@ build_$(TARGET):
 	TEXDIR=$$PARENTDIR/tex; \
 	OUT=$$TEXDIR/$(TARGET).tex; \
 	IN=doc.tex.erb; \
-	make OUT=$$OUT IN=$$IN $$OUT; \
+	make TARGET=$(TARGET) OUT=$$OUT IN=$$IN $$OUT
 
 $(OUT): $(IN)
-	cp $(IN) $(OUT)
+	cd $(RUBYDIR); \
+	$(RUNNER) tex:build[$(TARGET),$(IN),$(OUT)]
