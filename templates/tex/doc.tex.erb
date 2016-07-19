@@ -52,9 +52,10 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
-\newcommand{\introexperimentsize}{100}
-\newcommand{\introexperimentrepeats}{100}
-                                                                               
+<% @defines.each do |key, value| %>
+  \newcommand{\<%= key %>}{<%= value %>}
+<% end %>
+
 %\pagenumbering{roman} % no comeco, paginas em romano
 					                                                                                
 %--- SUMARIOS ---

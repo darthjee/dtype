@@ -1,2 +1,4 @@
 class Transpose
+  BINOMIAL_SEGMENTS=100
+  BINOMIAL_TIMES=100
 end
