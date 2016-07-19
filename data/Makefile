@@ -31,4 +31,9 @@ build_$(TASK)_$(REPORT):
 $(REPORT_FILE): $(REPORT_REQUIREMENS)
 	cd $(RUBYDIR); \
 	$(RUNNER) $(TASK):data:$(REPORT)
-	
+
+clean:
+	for TASK in $(TASKS); do \
+	  rm -rf $$TASK; \
+	done
+
