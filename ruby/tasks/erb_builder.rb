@@ -24,6 +24,6 @@ class ErbBuilder
   private
 
   def erb
-    @erb ||= Erb.new(stream)
+    @erb ||= ERB.new(stream)
   end
 end
