@@ -1,6 +1,6 @@
-require './tasks/transpose'
-require './tasks/transpose/data'
-require './tasks/transpose/data/binomial'
+require './lib/transpose'
+require './lib/transpose/data'
+require './lib/transpose/data/binomial'
 
 namespace :transpose do
   namespace :data do
@@ -21,7 +21,7 @@ namespace :transpose do
     namespace :binomial do
       desc 'List binomial requirements'
       task :requirements do
-        requirements =  Transpose::Data::Binomial::REQUIREMENTS + [ 'tasks/transpose/data/binomial.rb' ]
+        requirements =  Transpose::Data::Binomial::REQUIREMENTS + [ 'lib/transpose/data/binomial.rb' ]
         puts requirements.map { |r| "../ruby/#{r}" }
       end
     end

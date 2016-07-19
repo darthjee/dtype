@@ -1,4 +1,4 @@
-require './tasks/transpose'
+require './lib/transpose'
 
 class Tex::Transpose < Tex
   def initialize(input, output)

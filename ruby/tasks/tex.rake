@@ -1,6 +1,6 @@
-require './tasks/erb_builder'
-require './tasks/tex'
-require './tasks/tex/transpose'
+require './lib/erb_builder'
+require './lib/tex'
+require './lib/tex/transpose'
 
 namespace :tex do
   desc 'build tex document'
