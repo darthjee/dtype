@@ -9,6 +9,14 @@ class Transpose::Data::Binomial
     file.close
   end
 
+  def [](value)
+    data[value] ||= 0
+  end
+
+  def []=(key, value)
+    data[key] = value
+  end
+
   private
 
   def prepare
@@ -18,12 +26,7 @@ class Transpose::Data::Binomial
   end
 
   def register(value)
-    self[normalized(value)]
-  end
-
-  def [](value)
-    data[value] ||= 0
-    data[value] += 1
+    self[normalized(value)] += 1
   end
 
   def normalized(value)
@@ -39,11 +42,11 @@ class Transpose::Data::Binomial
   end
 
   def segments
-    100
+    Transpose::BINOMIAL_SEGMENTS
   end
 
   def times
-    100
+    Transpose::BINOMIAL_TIMES
   end
 
   def file
