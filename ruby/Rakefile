@@ -1,5 +1,4 @@
 task default: %w(transposition)
 
-import 'tasks/transpose.rake'
-import 'tasks/tex.rake'
 import 'tasks/data.rake'
+import 'tasks/tex.rake'
