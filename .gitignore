@@ -1,6 +1,7 @@
 dvi
 ps
 pdf
+eps
 
 data/*/
 tex/*.tex

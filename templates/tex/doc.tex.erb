@@ -1,14 +1,15 @@
 \documentclass[titlepage, 11pt, a4paper]{article}
 \usepackage[brazil]{babel}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[dvips]{graphicx}
 \usepackage{verbatim}
-\usepackage{subfigure,epsfig}
+\usepackage{graphicx,subfigure,epsfig}
 \usepackage{amsmath,amsthm,amssymb,amscd}
 \usepackage{fancyhdr}
 \usepackage{amscd}
 \usepackage{booktabs}
 \usepackage{float}
+\usepackage{multicol}
 \title{ \bf }
 
 \usepackage{color, float, bbm, multicol, xypic}
@@ -69,6 +70,8 @@
 \newpage                                                                               
 %--- RESUMO ---
 \pagenumbering{arabic} % agora, numeracao padrao
+\begin{multicols}{2}
 \input{transpose/sections.tex}
+\end{multicols}
 \end{document}
 
