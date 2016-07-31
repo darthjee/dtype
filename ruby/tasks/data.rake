@@ -1,14 +1,15 @@
-require './lib/transpose'
-require './lib/transpose/data'
-require './lib/transpose/data/binomial'
+require './lib/data'
+require './lib/data/transpose'
+require './lib/data/transpose/binomial'
 require 'active_support/inflector'
 
 namespace :data do
   desc 'List all datas to be processed'
   task :list, [:project] do |_task,args|
     project = args[:project]
-
-    puts project.camelize.constantize::Data::TASKS
+    project_class = "Data::#{project.camelize}".constantize
+    
+    puts project_class::TASKS
   end
 
   desc 'Creates data'
@@ -16,8 +17,8 @@ namespace :data do
     project = args[:project]
     report = args[:report]
 
-    project_class = project.camelize.constantize
-    report_class = "#{project_class}::Data::#{report.camelize}".constantize
+    project_class = "Data::#{project.camelize}".constantize
+    report_class = "#{project_class}::#{report.camelize}".constantize
 
     report_class.new.run
   end
