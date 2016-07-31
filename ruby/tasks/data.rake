@@ -1,3 +1,4 @@
+require './lib/array'
 require './lib/data'
 require './lib/data/transpose'
 require './lib/data/transpose/binomial'
@@ -7,7 +8,7 @@ namespace :data do
   desc 'List all datas to be processed'
   task :list, [:project] do |_task,args|
     project = args[:project]
-    project_class = "Data::#{project.camelize}".constantize
+    project_class = ['Data',project.camelize].constantize
     
     puts project_class::TASKS
   end
