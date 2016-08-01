@@ -1,7 +1,4 @@
 require './lib/array'
-require './lib/data'
-require './lib/data/transpose'
-require './lib/data/transpose/binomial'
 require 'active_support/inflector'
 
 namespace :data do
