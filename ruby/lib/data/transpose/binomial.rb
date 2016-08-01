@@ -1,4 +1,4 @@
-class Transpose::Data::Binomial
+class Data::Transpose::Binomial
   REQUIREMENTS=[]
 
   def run

@@ -5,10 +5,13 @@ require './lib/tex/transpose'
 namespace :tex do
   desc 'build tex document'
   task :build, [:name,:input,:output] do |_task, args|
+    name = args[:name]
     input = args[:input]
     output = args[:output]
 
-    Tex::Transpose.new(input, output).build
+    project_class = %W(tex #{name}).loader.require_constantize
+
+    project_class.new(input, output).build
   end
 
   desc 'return the requirements for tex building'
