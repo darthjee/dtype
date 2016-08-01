@@ -1,4 +1,4 @@
-class Data::Transpose::Binomial
+class Data::Transpose::Squared
   REQUIREMENTS=[]
 
   def run
@@ -50,7 +50,7 @@ class Data::Transpose::Binomial
   end
 
   def file
-    @file ||= File.open('../data/transpose/binomial.dat', 'w')
+    @file ||= File.open('../data/transpose/squared.dat', 'w')
   end
 end
 
