@@ -8,7 +8,7 @@ namespace :data do
   desc 'List all datas to be processed'
   task :list, [:project] do |_task,args|
     project = args[:project]
-    project_class = ['Data',project.camelize].constantize
+    project_class = %W(data #{project}).require_constantize
     
     puts project_class::TASKS
   end
@@ -18,8 +18,7 @@ namespace :data do
     project = args[:project]
     report = args[:report]
 
-    project_class = "Data::#{project.camelize}".constantize
-    report_class = "#{project_class}::#{report.camelize}".constantize
+    report_class = %W(data #{project} #{report}).require_constantize
 
     report_class.new.run
   end
@@ -29,11 +28,11 @@ namespace :data do
     project = args[:project]
     report = args[:report]
 
-    project_class = project.camelize.constantize
-    report_class = "#{project_class}::Data::#{report.camelize}".constantize
+    class_path = %W(data #{project} #{report})
+    report_class = class_path.require_constantize
 
-    requirements =  report_class::REQUIREMENTS + [ "lib/#{project}/data/#{report}.rb" ]
-    puts requirements.map { |r| "../ruby/#{r}" }
+    requirements =  report_class::REQUIREMENTS + [ "#{class_path.join('/')}.rb" ]
+    puts requirements.map { |r| "../ruby/lib/#{r}" }
   end
 end
 

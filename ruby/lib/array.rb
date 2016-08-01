@@ -14,4 +14,9 @@ class Array
       prev
     end
   end
+
+  def require_constantize
+    require_cascade
+    map(&:camelize).constantize
+  end
 end
