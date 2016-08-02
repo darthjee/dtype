@@ -15,8 +15,8 @@ class Tex::Transpose < Tex
 
   def defines
     {
-      introexperimentsize: ::Transpose::BINOMIAL_SEGMENTS,
-      introexperimentrepeats: ::Transpose::BINOMIAL_TIMES
+      introexperimentsize: ::Transpose::BINOMIAL_THROWS,
+      introexperimentrepeats: ::Transpose::BINOMIAL_TIMES * ::Transpose::BINOMIAL_SEGMENTS
     }
   end
 end

@@ -1,5 +1,4 @@
 require './lib/array'
-require 'active_support/inflector'
 
 namespace :data do
   desc 'List all datas to be processed'
