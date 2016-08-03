@@ -1,23 +1,36 @@
-\chapter{Introdu\c{c}\~{a}o}
+\section{Introdu\c{c}\~{a}o}
+
 Podemos utilizar a estat\'{i}stica para entender eventos binomiais, que s\~{a}o os modelos
 em que duas alternativas s\~{a}o apresentadas, sucesso e falha.
 
 Alguns modelos binomiais comuns no universo de simula\c{c}\~{a}o
-s\~{a}o aqueles em que um modelo simula um evento com uma probabilidade de acerto,
-e um numero aleat\'{o}rio \'{e} gerado e comparado com um lim\'{i}te, e caso este valor passe ou
-fique abaixo deste lim\'{i}te o evento \'{e} considerad um sucesso ou uma falha.
+s\~{a}o aqueles em que um modelo simula um evento com uma probabilidade de acerto.
+Um numero aleat\'{o}rio \'{e} gerado
+e comparado com um lim\'{i}te, e caso este valor passe ou
+fique abaixo deste lim\'{i}te o evento \'{e} considerado um sucesso ou uma falha.
 
 Em um universo discreto, este numero seria o equivalente a um lan\c{c}amento de um dado,
 onde um numero \'{e} utilizado como par\^{a}metro de sucesso, como por exemplo, o número limite 16
 em um lan\c{c}amento de um dado de 20 faces garante uma taxa de sucesso de $25\%$
 
 Para uma simula\c{c}\~{a}o, utilizamos geradores aleat\'{o}rios de dsitribui\c{c}\~{a}o quadrada, onde
-todos os valores tem a mesma probabílidade de serem lan\c{c}ados, variando entre $0$ e $1$
-e comparamos este valor contra a taxa de sucesso do dito evento.
+todos os valores tem a mesma probabílidade de serem lan\c{c}ados
+de uma distribui\c{c}\~{a}o quadrada (figura \ref{intro:squared}), variando entre $0$ e $1$
+e comparamos este valor contra um limite de sucesso do dito evento.
 
 Repetimos o procedimento \introexperimentsize{} vezes para cada experimento obtendo um indice de sucesso,
 e repetindo o experimento \introexperimentrepeats{} vezes gerando um histograma de indices obtendo o gr\'{a}fico
 \ref{intro:binomial}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\label{intro:squared}
+\epsfig{file=../eps/transpose/squared.eps, scale=1, angle=0}
+\caption{Distribui\c{c}\~ao quadrada}
+\end{center}
+\end{figure}
+\end{center}
 
 \begin{center}
 \begin{figure}[H]
@@ -28,4 +41,3 @@ e repetindo o experimento \introexperimentrepeats{} vezes gerando um histograma 
 \end{center}
 \end{figure}
 \end{center}
-
