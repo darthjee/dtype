@@ -30,7 +30,8 @@ class Data::Transpose::Binomial
 
   def run
     prepare
-    data.each do |key, value|
+    data.keys.sort.each do |key|
+      value = data[key]
       file.write("#{key}\t#{value * 1.0 / total_times}\n")
     end
     file.close
@@ -57,7 +58,7 @@ class Data::Transpose::Binomial
   end
 
   def normalized(value)
-    (value * segments).to_i * 1.0 / segments
+    (value * segments).to_i * 1.0
   end
 
   def data
