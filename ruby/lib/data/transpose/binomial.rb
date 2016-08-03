@@ -32,7 +32,7 @@ class Data::Transpose::Binomial
     prepare
     data.keys.sort.each do |key|
       value = data[key]
-      file.write("#{key}\t#{value * 1.0 / total_times}\n")
+      file.write("#{key}\t#{value * 1.0 / times}\n")
     end
     file.close
   end

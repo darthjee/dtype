@@ -4,7 +4,7 @@ class Data::Transpose::Squared
   def run
     prepare
     data.each do |key, value|
-      file.write("#{key}\t#{value}\n")
+      file.write("#{key}\t#{value * 1.0 / times}\n")
     end
     file.close
   end

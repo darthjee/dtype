@@ -3,8 +3,8 @@ set xr [*:*]
 set yr [0:*]
 #set multiplo
 #set data style dots
-set ylabel "Y"
-set xlabel "X"
+set ylabel "Frequencia"
+set xlabel "Numero aleatorio"
 set nokey
 #set encoding iso_8859_1
 set notitle
