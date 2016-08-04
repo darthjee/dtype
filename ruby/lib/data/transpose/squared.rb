@@ -1,7 +1,7 @@
 require './lib/data/source'
 
 class Data::Transpose::Squared
-  REQUIREMENTS=[]
+  REQUIREMENTS=['data/source']
 
   def run
     prepare
