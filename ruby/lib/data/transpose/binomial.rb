@@ -1,10 +1,13 @@
+require './lib/data/source'
+
 class Data::Transpose::Binomial
   REQUIREMENTS=[]
 
   class Experiment
-    attr_reader :successes
+    attr_reader :successes, :source
 
-    def initialize
+    def initialize(source)
+      @source = source
       @successes = 0
       times.times { throw_dice }
     end
@@ -16,7 +19,7 @@ class Data::Transpose::Binomial
     private
 
     def throw_dice
-      register(Random.rand)
+      register(source.get)
     end
 
     def register(value)
@@ -47,9 +50,13 @@ class Data::Transpose::Binomial
 
   private
 
+  def source
+    @source ||= Data::Source.new('../data/transpose/random.dat')
+  end
+
   def prepare
     total_times.times do
-      register(Experiment.new.success_rate)
+      register(Experiment.new(source).success_rate)
     end
   end
 
