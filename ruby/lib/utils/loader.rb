@@ -1,4 +1,5 @@
 require './lib/utils'
+require 'active_support/inflector'
 
 module Utils
   class Loader

@@ -1,6 +1,10 @@
 require './lib/transpose'
+require './lib/string'
+require './lib/helpers/tex'
 
 class Tex::Transpose < Tex
+  include Helpers::Tex
+
   def initialize(input, output)
     super(:transpose, input, output, default_variables)
   end
@@ -15,8 +19,8 @@ class Tex::Transpose < Tex
 
   def defines
     {
-      introexperimentsize: ::Transpose::BINOMIAL_SEGMENTS,
-      introexperimentrepeats: ::Transpose::BINOMIAL_TIMES
+      introexperimentsize: format_tex_number(::Transpose::BINOMIAL_THROWS),
+      introexperimentrepeats: format_tex_number(::Transpose::BINOMIAL_TIMES * ::Transpose::BINOMIAL_SEGMENTS)
     }
   end
 end

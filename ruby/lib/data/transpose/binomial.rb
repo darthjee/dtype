@@ -1,10 +1,38 @@
 class Data::Transpose::Binomial
   REQUIREMENTS=[]
 
+  class Experiment
+    attr_reader :successes
+
+    def initialize
+      @successes = 0
+      times.times { throw_dice }
+    end
+
+    def success_rate
+      1.0 * successes / times
+    end
+
+    private
+
+    def throw_dice
+      register(Random.rand)
+    end
+
+    def register(value)
+      @successes += 1 if value >= 0.5
+    end
+
+    def times
+      ::Transpose::BINOMIAL_THROWS
+    end
+  end
+
   def run
     prepare
-    data.each do |key, value|
-      file.write("#{key}\t#{value}\n")
+    data.keys.sort.each do |key|
+      value = data[key]
+      file.write("#{key}\t#{value * 1.0 / times}\n")
     end
     file.close
   end
@@ -20,8 +48,8 @@ class Data::Transpose::Binomial
   private
 
   def prepare
-    total.times do
-      register(Random.rand)
+    total_times.times do
+      register(Experiment.new.success_rate)
     end
   end
 
@@ -30,23 +58,23 @@ class Data::Transpose::Binomial
   end
 
   def normalized(value)
-    (value * segments).to_i * 1.0 / segments
+    (value * segments).to_i * 1.0
   end
 
   def data
     @data ||= {}
   end
 
-  def total
-    segments * times
+  def segments
+    ::Transpose::BINOMIAL_SEGMENTS
   end
 
-  def segments
-    Transpose::BINOMIAL_SEGMENTS
+  def total_times
+    @total_times ||= times * segments
   end
 
   def times
-    Transpose::BINOMIAL_TIMES
+    ::Transpose::BINOMIAL_TIMES
   end
 
   def file
