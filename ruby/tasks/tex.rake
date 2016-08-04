@@ -1,4 +1,4 @@
-require './lib/erb_builder'
+require './lib/utils/erb_builder'
 require './lib/tex'
 require './lib/tex/transpose'
 

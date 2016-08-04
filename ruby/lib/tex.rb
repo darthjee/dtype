@@ -19,7 +19,7 @@ class Tex
   end
 
   def erb_builder
-    @erb_builder ||= ErbBuilder.new(input_stream, variables)
+    @erb_builder ||= Utils::ErbBuilder.new(input_stream, variables)
   end
 
   def input_stream
