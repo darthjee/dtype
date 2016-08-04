@@ -15,6 +15,8 @@ module Utils
 
     def require_class
       require array.join('/')
+    rescue LoadError
+      nil
     end
 
     def require_cascade
