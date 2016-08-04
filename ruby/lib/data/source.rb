@@ -9,9 +9,13 @@ class Data::Source
     case(mode)
     when 'r'
       try_read
-    when 'w'
+    when 'a'
       generate_value
     end
+  end
+
+  def close
+    file.close
   end
 
   private
@@ -22,13 +26,13 @@ class Data::Source
 
   def try_read
     read_value
-  rescue EOFError
+  rescue EOFError, IOError
     start_writing
     generate_value
   end
 
   def start_writing
-    @mode = 'w'
+    @mode = 'a'
     file.close
     @file = nil
   end
@@ -44,6 +48,13 @@ class Data::Source
   end
 
   def file
-    @file ||= File.open(file_path, mode)
+    @file ||= try_file
+  end
+
+  def try_file
+    File.open(file_path, mode)
+  rescue Errno::ENOENT
+    @mode = 'a'
+    File.open(file_path, mode)
   end
 end

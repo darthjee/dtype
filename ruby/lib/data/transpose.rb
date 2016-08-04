@@ -1,3 +1,3 @@
 module Data::Transpose
-  TASKS=%w(random squared binomial)
+  TASKS=%w(squared binomial)
 end

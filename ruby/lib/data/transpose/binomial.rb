@@ -11,6 +11,7 @@ class Data::Transpose::Binomial
       file.write("#{key}\t#{value * 1.0 / times}\n")
     end
     file.close
+    source.close
   end
 
   def [](value)

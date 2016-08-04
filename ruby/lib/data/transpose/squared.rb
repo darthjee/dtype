@@ -9,6 +9,7 @@ class Data::Transpose::Squared
       file.write("#{key}\t#{value * 1.0 / times * segments}\n")
     end
     file.close
+    source.close
   end
 
   def [](value)
