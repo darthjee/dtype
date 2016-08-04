@@ -1,6 +1,5 @@
 class Data::Transpose::Binomial
-  INCLUDES=['data/source', 'data/transpose/binomial/experiment']
-  REQUIREMENTS=[]
+  REQUIREMENTS=['data/source', 'data/transpose/binomial/experiment']
   load_includes
 
   def run

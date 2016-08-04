@@ -1,6 +1,5 @@
 class Data::Transpose::Squared
-  INCLUDES=['data/source']
-  REQUIREMENTS=INCLUDES
+  REQUIREMENTS=['data/source']
   load_includes
 
   def run
