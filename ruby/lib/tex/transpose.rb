@@ -1,5 +1,5 @@
 require './lib/transpose'
-require './lib/string'
+require './lib/core/string'
 require './lib/helpers/tex'
 
 class Tex::Transpose < Tex

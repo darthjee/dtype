@@ -1,4 +1,4 @@
-require './lib/array'
+require './lib/core/array'
 
 class Class
   def load_includes
