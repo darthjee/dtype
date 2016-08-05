@@ -29,7 +29,7 @@ namespace :data do
     report_class = class_path.loader.require_constantize
 
     requirements =  report_class.requirements + [ "#{class_path.join('/')}" ]
-    puts requirements.map { |r| "../ruby/lib/#{r}.rb" }
+    puts requirements.map { |r| "../ruby/lib/#{r}.rb" }.join(' ')
   end
 end
 
