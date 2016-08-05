@@ -11,8 +11,9 @@ module Utils
       end
     end
 
-    def initialize(array)
-      @array = array
+    def initialize(input)
+      @array = input.is_a?(String) ? input.split('/') : input
+      @string = input.is_a?(String) ? input : input.join('/')
     end
 
     def constantize
