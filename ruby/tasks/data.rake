@@ -28,8 +28,8 @@ namespace :data do
     class_path = %W(data #{project} #{report})
     report_class = class_path.loader.require_constantize
 
-    requirements =  report_class.requirements + [ "#{class_path.join('/')}" ]
-    puts requirements.map { |r| "../ruby/lib/#{r}.rb" }.join(' ')
+    requirements =  Utils::Loader.loaded 
+    puts requirements.map { |r| r.gsub(/^\.(.*)/,'../ruby\1.rb') }.join(' ')
   end
 end
 

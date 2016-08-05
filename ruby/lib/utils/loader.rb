@@ -5,6 +5,12 @@ module Utils
   class Loader
     attr_reader :array
 
+    class << self
+      def loaded
+        @loaded ||= []
+      end
+    end
+
     def initialize(array)
       @array = array
     end
@@ -14,7 +20,10 @@ module Utils
     end
 
     def require_class
-      require array.join('/')
+      path = array.join('/')
+      require(path).tap do |result|
+        self.class.loaded << path if result
+      end
     rescue LoadError
       nil
     end
