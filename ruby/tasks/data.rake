@@ -28,7 +28,7 @@ namespace :data do
     class_path = %W(data #{project} #{report})
     report_class = class_path.loader.require_constantize
 
-    requirements =  report_class::REQUIREMENTS + [ "#{class_path.join('/')}" ]
+    requirements =  report_class.requirements + [ "#{class_path.join('/')}" ]
     puts requirements.map { |r| "../ruby/lib/#{r}.rb" }
   end
 end
