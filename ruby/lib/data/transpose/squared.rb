@@ -1,12 +1,15 @@
+require './lib/data/source'
+
 class Data::Transpose::Squared
   REQUIREMENTS=[]
 
   def run
     prepare
     data.each do |key, value|
-      file.write("#{key}\t#{value * 1.0 / times}\n")
+      file.write("#{key}\t#{value * 1.0 / times * segments}\n")
     end
     file.close
+    source.close
   end
 
   def [](value)
@@ -19,9 +22,13 @@ class Data::Transpose::Squared
 
   private
 
+  def source
+    @source ||= Data::Source.new('../data/transpose/random.dat')
+  end
+
   def prepare
-    total.times do
-      register(Random.rand)
+    times.times do
+      register(source.get)
     end
   end
 
@@ -37,16 +44,12 @@ class Data::Transpose::Squared
     @data ||= {}
   end
 
-  def total
-    segments * times
-  end
-
   def segments
     Transpose::BINOMIAL_SEGMENTS
   end
 
   def times
-    Transpose::BINOMIAL_TIMES
+    Transpose::BINOMIAL_TOTAL
   end
 
   def file
