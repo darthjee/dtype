@@ -1,4 +1,3 @@
-require './lib/utils'
 require 'active_support/inflector'
 
 module Utils
@@ -32,7 +31,7 @@ module Utils
     def require_cascade
       array.inject(['.', 'lib']) do |prev, current|
         prev << current
-        prev.loader.require_class if current.match(/\w+/)
+        self.class.new(prev).require_class if current.match(/\w+/)
         prev
       end
     end

@@ -1,4 +1,9 @@
-require './lib/helpers/number'
+%w(
+  helpers/number
+).each do |lib|
+  Utils::Loader.new(lib).require_cascade
+end
+
 
 module Helpers
   module Tex

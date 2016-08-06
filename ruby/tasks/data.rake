@@ -1,5 +1,4 @@
-require './lib/core/array'
-require './lib/core/class'
+require './lib/initializer'
 
 namespace :data do
   desc 'List all datas to be processed'

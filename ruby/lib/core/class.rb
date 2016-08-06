@@ -1,5 +1,3 @@
-require './lib/core/array'
-
 class Class
   def requirements
     if parent == Object
@@ -21,3 +19,4 @@ class Class
     end
   end
 end
+
