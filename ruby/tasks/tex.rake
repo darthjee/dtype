@@ -15,8 +15,10 @@ namespace :tex do
   desc 'return the requirements for tex building'
   task :requirements, [:name] do |_task, args|
     name = args[:name]
-    requirements =  [ "lib/#{name}.rb" ]
-    puts requirements.map { |r| "../../ruby/#{r}" }
+    %W(tex #{name}).loader.require_constantize
+
+    requirements =  Utils::Loader.loaded 
+    puts requirements.map { |r| r.gsub(/^\.(.*)/,'../../ruby\1.rb') }.join(' ')
   end
 end
 
