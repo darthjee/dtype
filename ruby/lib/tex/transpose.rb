@@ -1,9 +1,10 @@
-require './lib/transpose'
-require './lib/string'
-require './lib/helpers/tex'
+Utils::Loader.require_cascade('helpers/tex')
 
 class Tex::Transpose < Tex
   include Helpers::Tex
+  REQUIREMENTS=['transpose', 'core/string', 'helpers/tex']
+  load_includes
+  
 
   def initialize(input, output)
     super(:transpose, input, output, default_variables)

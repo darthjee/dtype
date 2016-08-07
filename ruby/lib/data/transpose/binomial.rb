@@ -1,8 +1,6 @@
-require './lib/data/source'
-require './lib/data/transpose/binomial/experiment'
-
 class Data::Transpose::Binomial
-  REQUIREMENTS=[]
+  REQUIREMENTS=['data/source', 'data/transpose/binomial/experiment']
+  load_includes
 
   def run
     prepare

@@ -1,4 +1,4 @@
-require './lib/array'
+require './lib/initializer'
 
 namespace :data do
   desc 'List all datas to be processed'
@@ -27,8 +27,8 @@ namespace :data do
     class_path = %W(data #{project} #{report})
     report_class = class_path.loader.require_constantize
 
-    requirements =  report_class::REQUIREMENTS + [ "#{class_path.join('/')}.rb" ]
-    puts requirements.map { |r| "../ruby/lib/#{r}" }
+    requirements =  Utils::Loader.loaded 
+    puts requirements.map { |r| r.gsub(/^\.(.*)/,'../ruby\1.rb') }.join(' ')
   end
 end
 

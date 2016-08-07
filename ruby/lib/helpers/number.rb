@@ -1,5 +1,3 @@
-require './lib/helpers'
-
 module Helpers
   module Number
     def format_number(number)

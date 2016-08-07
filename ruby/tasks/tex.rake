@@ -1,6 +1,9 @@
-require './lib/erb_builder'
-require './lib/tex'
-require './lib/tex/transpose'
+require './lib/initializer'
+
+Utils::Loader.batch_require_cascade(%w(
+  tex/transpose
+  utils/erb_builder
+))
 
 namespace :tex do
   desc 'build tex document'

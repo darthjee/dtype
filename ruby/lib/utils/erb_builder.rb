@@ -1,6 +1,6 @@
 require 'erb'
 
-class ErbBuilder
+class Utils::ErbBuilder
   attr_reader :stream, :erb
 
   def initialize(stream, variables)
