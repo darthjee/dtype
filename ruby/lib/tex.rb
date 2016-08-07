@@ -1,3 +1,5 @@
+Utils::Loader.require_cascade('utils/erb_builder')
+
 class Tex
   attr_reader :name, :input, :output, :variables
 
