@@ -5,6 +5,8 @@ module Utils
     attr_reader :array
 
     class << self
+      attr_accessor :base
+
       def loaded
         @loaded ||= []
       end
@@ -30,7 +32,7 @@ module Utils
     end
 
     def require_class
-      path = array.join('/')
+      path = "#{self.class.base}#{array.join("/")}"
       require(path).tap do |result|
         self.class.loaded << path if result
       end
@@ -39,7 +41,7 @@ module Utils
     end
 
     def require_cascade
-      array.inject(['.', 'lib']) do |prev, current|
+      array.inject([]) do |prev, current|
         prev << current
         self.class.new(prev).require_class if current.match(/\w+/)
         prev
