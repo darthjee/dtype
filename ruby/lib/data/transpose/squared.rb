@@ -1,7 +1,6 @@
-class Data::Transpose::Squared
-  REQUIREMENTS=['data/source']
-  load_includes
+Utils::Loader.require_cascade('data/source')
 
+class Data::Transpose::Squared
   def run
     prepare
     data.each do |key, value|
