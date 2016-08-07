@@ -13,24 +13,17 @@ all:
 
 build_$(TASK):
 	mkdir -p $(TASK)
-	OLD_DIR=$$(pwd); \
-	cd $(RUBYDIR); \
-	TASK_REPORTS=$$($(RUNNER) data:list[$(TASK)]); \
-	cd $$OLD_DIR; \
+	TASK_REPORTS=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) data:list[$(TASK)]'); \
 	for REPORT in $$TASK_REPORTS; do \
 	  make TASK=$(TASK) REPORT=$$REPORT build_$(TASK)_$$REPORT; \
 	done
 
 build_$(TASK)_$(REPORT):
-	OLD_DIR=$$(pwd); \
-	cd $(RUBYDIR); \
-	REPORT_REQUIREMENT=$$($(RUNNER) data:requirements[$(TASK),$(REPORT)]); \
-	cd $$OLD_DIR; \
+	REPORT_REQUIREMENT=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) data:requirements[$(TASK),$(REPORT)]'); \
 	make TASK=$(TASK) REPORT=$(REPORT) $(REPORT_FILE) REPORT_REQUIREMENS="$$REPORT_REQUIREMENT"
 
 $(REPORT_FILE): $(REPORT_REQUIREMENS)
-	cd $(RUBYDIR); \
-	$(RUNNER) data:create[$(TASK),$(REPORT)]
+	/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) data:create[$(TASK),$(REPORT)]'
 
 clean:
 	for TASK in $(TASKS); do \

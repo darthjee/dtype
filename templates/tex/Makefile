@@ -15,15 +15,11 @@ build_$(TARGET):
 	TEXDIR=$$PARENTDIR/tex; \
 	OUT=$$TEXDIR/$(TARGET).tex; \
 	IN=doc.tex.erb; \
-	OLD_DIR=$$(pwd); \
-	cd $(RUBYDIR); \
-	REQUIREMENTS=$$($(RUNNER) tex:requirements[$(TARGET)]); \
-	cd $$OLD_DIR; \
+	REQUIREMENTS=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) tex:requirements[$(TARGET)]'); \
 	make TARGET=$(TARGET) OUT=$$OUT IN=$$CURRENTDIR/$$IN REQUIREMENTS="$$REQUIREMENTS" $$OUT
 
 $(OUT): $(IN) $(REQUIREMENTS)
-	cd $(RUBYDIR); \
-	$(RUNNER) tex:build[$(TARGET),$(IN),$(OUT)]
+	/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) tex:build[$(TARGET),$(IN),$(OUT)]'
 
 clean:
 	for TARGET in $(TARGETS); do \
