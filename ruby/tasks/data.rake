@@ -24,10 +24,9 @@ namespace :data do
     project = args[:project]
     report = args[:report]
 
-    class_path = %W(data #{project} #{report})
-    report_class = class_path.loader.require_constantize
+    class_path = "data/#{project}/#{report}"
+    requirements =  Utils::Loader.requirements(class_path) 
 
-    requirements =  Utils::Loader.loaded 
     puts requirements.map { |r| r.gsub(/^\.(.*)/,'../ruby\1.rb') }.join(' ')
   end
 end

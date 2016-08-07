@@ -20,6 +20,11 @@ module Utils
       def require_cascade(lib)
         new(lib).require_cascade
       end
+
+      def requirements(lib)
+        require_cascade(lib)
+        loaded
+      end
     end
 
     def initialize(input)
