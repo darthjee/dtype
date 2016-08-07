@@ -8,6 +8,16 @@ module Utils
       def loaded
         @loaded ||= []
       end
+
+      def batch_require_cascade(libs)
+        libs.each do |lib|
+          require_cascade(lib)
+        end
+      end
+
+      def require_cascade(lib)
+        new(lib).require_cascade
+      end
     end
 
     def initialize(input)
@@ -42,3 +52,4 @@ module Utils
     end
   end
 end
+

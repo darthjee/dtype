@@ -1,8 +1,4 @@
-%w(
-  helpers/tex
-).each do |lib|
-  Utils::Loader.new(lib).require_cascade
-end
+Utils::Loader.require_cascade('helpers/tex')
 
 class Tex::Transpose < Tex
   include Helpers::Tex

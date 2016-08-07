@@ -1,9 +1,8 @@
 require './lib/utils/loader'
 
-%w(
+Utils::Loader.batch_require_cascade(%w(
   core/array
   core/class
   utils
-).each do |lib|
-  Utils::Loader.new(lib).require_cascade
-end
+))
+
