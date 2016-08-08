@@ -1,12 +1,9 @@
 reset
 set xr [*:*]
 set yr [0:*]
-#set multiplo
-#set data style dots
 set ylabel "Frequencia"
 set xlabel "Numero aleatorio"
 set nokey
-#set encoding iso_8859_1
 set notitle
 set size 0.6,0.6
 set term postscript eps mono
