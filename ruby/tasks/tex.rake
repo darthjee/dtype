@@ -18,7 +18,7 @@ namespace :tex do
 
     requirements =  Utils::Loader.requirements("tex/#{name}")
 
-    puts requirements.map { |r| r.gsub(/^\.(.*)/,'../../ruby\1.rb') }.join(' ')
+    puts requirements.map { |r| r.gsub(/^\.(.*)/,"#{Dir.pwd}\\1.rb") }.join(' ')
   end
 end
 

@@ -27,7 +27,7 @@ namespace :data do
     class_path = "data/#{project}/#{report}"
     requirements =  Utils::Loader.requirements(class_path) 
 
-    puts requirements.map { |r| r.gsub(/^\.(.*)/,'../ruby\1.rb') }.join(' ')
+    puts requirements.map { |r| r.gsub(/^\.(.*)/,"#{Dir.pwd}\\1.rb") }.join(' ')
   end
 end
 
