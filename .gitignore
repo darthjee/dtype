@@ -5,3 +5,4 @@ eps
 
 data/*/
 tex/*.tex
+gnuplot/transpose
