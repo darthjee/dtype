@@ -1,12 +1,13 @@
 Utils::Loader.require_cascade('utils/erb_builder')
 
 class Utils::Template
-  attr_reader :input, :output, :variables
+  attr_reader :input, :output, :variables, :helpers
 
-  def initialize(input, output, variables)
+  def initialize(input, output, variables, helpers = [])
     @input = input
     @output = output
     @variables = variables
+    @helpers = helpers
   end
 
   def build
@@ -20,7 +21,15 @@ class Utils::Template
   end
 
   def erb_builder
-    @erb_builder ||= Utils::ErbBuilder.new(input_stream, variables)
+    @erb_builder ||= build_builder
+  end
+
+  def build_builder
+    Utils::ErbBuilder.new(input_stream, variables).tap do |builder|
+      helpers.each do |helper|
+        eval("class << builder\ninclude #{helper}\nend")
+      end
+    end
   end
 
   def input_stream
