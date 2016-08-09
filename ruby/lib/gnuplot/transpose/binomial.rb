@@ -4,8 +4,8 @@ Utils::Loader.batch_require_cascade(%w(
 ))
 
 class Gnuplot::Transpose::Binomial < Gnuplot
-  def name
-    :binomial
+  def initialize(input, output)
+    super(:binomial, input, output)
   end
 
   def x_label

@@ -4,8 +4,8 @@ Utils::Loader.batch_require_cascade(%w(
 ))
 
 class Gnuplot::Transpose::Squared < Gnuplot
-  def name
-    :squared
+  def initialize(input, output)
+    super(:squared, input, output)
   end
   
   def x_label

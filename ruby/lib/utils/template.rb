@@ -1,10 +1,9 @@
 Utils::Loader.require_cascade('utils/erb_builder')
 
 class Utils::Template
-  attr_reader :name, :input, :output, :variables
+  attr_reader :input, :output, :variables
 
-  def initialize(name, input, output, variables)
-    @name = name
+  def initialize(input, output, variables)
     @input = input
     @output = output
     @variables = variables
