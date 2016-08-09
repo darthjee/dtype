@@ -1,4 +1,4 @@
-TASKS=data gnuplot templates tex
+TASKS=data templates gnuplot tex
 
 all:
 	for TASK in $(TASKS); do \

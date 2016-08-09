@@ -5,7 +5,7 @@ namespace :data do
   task :list, [:project] do |_task,args|
     project = args[:project]
     project_class = %W(data #{project}).loader.require_constantize
-    
+
     puts project_class::TASKS
   end
 
