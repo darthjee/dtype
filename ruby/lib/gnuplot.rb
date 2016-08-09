@@ -4,6 +4,7 @@ Utils::Loader.batch_require_cascade(%w(
 ))
 
 class Gnuplot < Utils::Template
+  attr_reader :x_range, :y_range, :x_label, :y_label
   private
 
   def helpers
@@ -12,6 +13,8 @@ class Gnuplot < Utils::Template
 
   def default_variables
     {
+      xrange: x_range,
+      yrange: y_range,
       xlabel: x_label,
       ylabel: y_label,
       output: eps_output,

@@ -1,6 +1,6 @@
 reset
-set xr <%= range %>
-set yr [*:*]
+set xr <%= range(@xrange) %>
+set yr <%= range(@yrange) %>
 set ylabel "<%= @ylabel %>"
 set xlabel "<%= @xlabel %>"
 set nokey

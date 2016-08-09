@@ -7,6 +7,10 @@ class Gnuplot::Transpose::Squared < Gnuplot::Transpose
   def initialize(input, output)
     super(:squared, input, output)
   end
+
+  def y_range
+    [0]
+  end
   
   def x_label
     'Numero Aleatorio'
