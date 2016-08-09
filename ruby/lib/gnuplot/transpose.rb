@@ -3,5 +3,5 @@ Utils::Loader.batch_require_cascade(%w(
 ))
 
 module Gnuplot::Transpose
-  TASKS=%w(binomial)
+  TASKS=%w(squared binomial)
 end

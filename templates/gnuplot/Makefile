@@ -1,31 +1,38 @@
 RUBYDIR=../../ruby
 RUNNER=rake
-TARGETS=transpose
+TASKS=transpose
 DIR=
 
 all:
-	for TARGET in $(TARGETS); do \
-	  make TARGET=$$TARGET build_$$TARGET; \
+	for TASK in $(TASKS); do \
+	  make TASK=$$TASK build_$$TASK; \
 	done
 
-build_$(TARGET):
+build_$(TASK):
+	mkdir -p ../../gnuplot/$(TASK)
+	TASK_GRAPHS=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) gnuplot:list[$(TASK)]'); \
+	for GRAPH in $$TASK_GRAPHS; do \
+	  make TASK=$(TASK) GRAPH=$$GRAPH build_$(TASK)_$$GRAPH; \
+	done
+
+build_$(TASK)_$(GRAPH):
 	CURRENTDIR=$$(pwd); \
 	GNUDIR=$$(/bin/bash -c 'cd ../../gnuplot; pwd'); \
-	OUT=$$GNUDIR/$(TARGET)/binomial.gnu; \
+	OUT=$$GNUDIR/$(TASK)/$(GRAPH).gnu; \
 	IN=plot.gnu.erb; \
-	REQUIREMENTS=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) gnuplot:requirements[$(TARGET),binomial]'); \
-	make TARGET=$(TARGET) OUT=$$OUT IN=$$CURRENTDIR/$$IN REQUIREMENTS="$$REQUIREMENTS" $$OUT
+	REQUIREMENTS=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) gnuplot:requirements[$(TASK),$(GRAPH)]'); \
+	make TASK=$(TASK) GRAPH=$(GRAPH) OUT=$$OUT IN=$$CURRENTDIR/$$IN REQUIREMENTS="$$REQUIREMENTS" $$OUT
 
 $(OUT): $(IN) $(REQUIREMENTS)
-	/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) gnuplot:build[$(TARGET),binomial,$(IN),$(OUT)]'
+	/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) gnuplot:build[$(TASK),$(GRAPH),$(IN),$(OUT)]'
 
 clean:
-	for TARGET in $(TARGETS); do \
-	  make TARGET=$$TARGET clean_$$TARGET; \
+	for TASK in $(TASKS); do \
+	  make TASK=$$TASK clean_$$TASK; \
 	done
 
-clean_$(TARGET):
+clean_$(TASK):
 	GNUDIR=$$(/bin/bash -c 'cd ../../gnuplot; pwd'); \
-	OUT=$$GNUDIR/$(TARGET)/binomial.gnu; \
-	rm -f $$OUT
+	OUT=$$GNUDIR/$(TASK); \
+	rm -rf $$OUT
 
