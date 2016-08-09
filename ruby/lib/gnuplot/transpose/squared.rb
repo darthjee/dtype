@@ -4,17 +4,20 @@ Utils::Loader.batch_require_cascade(%w(
 ))
 
 class Gnuplot::Transpose::Squared < Gnuplot
-  def initialize(input, output)
-    super(:squared, input, output, default_variables)
+  def name
+    :squared
+  end
+  
+  def x_label
+    'Numero Aleatorio'
   end
 
-  def default_variables
-    {
-      xlabel: 'Numero Aleatorio',
-      ylabel: 'Frequencia',
-      output: '../eps/transpose/squared.eps',
-      plots: plots
-    }
+  def y_label
+    'Frequencia'
+  end
+
+  def eps_output
+    '../eps/transpose/squared.eps'
   end
 
   def plots

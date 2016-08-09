@@ -4,17 +4,20 @@ Utils::Loader.batch_require_cascade(%w(
 ))
 
 class Gnuplot::Transpose::Binomial < Gnuplot
-  def initialize(input, output)
-    super(:binomial, input, output, default_variables)
+  def name
+    :binomial
   end
 
-  def default_variables
-    {
-      xlabel: 'Taxa de sucesso (%)',
-      ylabel: 'Frequencia',
-      output: '../eps/transpose/binomial.eps',
-      plots: plots
-    }
+  def x_label
+    'Taxa de sucesso (%)'
+  end
+
+  def y_label
+    'Frequencia'
+  end
+
+  def eps_output
+    '../eps/transpose/binomial.eps'
   end
 
   def plots
