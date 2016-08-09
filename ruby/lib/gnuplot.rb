@@ -1,12 +1,8 @@
 Utils::Loader.require_cascade('utils/template')
 
 class Gnuplot < Utils::Template
-  attr_reader :name
 
-  def initialize(name, input, output)
-    @name = name
-    super(input, output, default_variables)
-  end
+  private
 
   def default_variables
     {

@@ -1,7 +1,9 @@
-Utils::Loader.batch_require_cascade(%w(
-  gnuplot
-))
+Utils::Loader.require_cascade('gnuplot/base')
 
-module Gnuplot::Transpose
+class Gnuplot::Transpose < Gnuplot::Base
   TASKS=%w(squared binomial)
+
+  def initialize(graph, input, output)
+    super(:transpose, graph, input, output)
+  end
 end

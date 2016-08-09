@@ -3,7 +3,7 @@ Utils::Loader.batch_require_cascade(%w(
   gnuplot/plot
 ))
 
-class Gnuplot::Transpose::Binomial < Gnuplot
+class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
   def initialize(input, output)
     super(:binomial, input, output)
   end
@@ -14,10 +14,6 @@ class Gnuplot::Transpose::Binomial < Gnuplot
 
   def y_label
     'Frequencia'
-  end
-
-  def eps_output
-    '../eps/transpose/binomial.eps'
   end
 
   def plots

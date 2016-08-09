@@ -3,7 +3,7 @@ Utils::Loader.batch_require_cascade(%w(
   gnuplot/plot
 ))
 
-class Gnuplot::Transpose::Squared < Gnuplot
+class Gnuplot::Transpose::Squared < Gnuplot::Transpose
   def initialize(input, output)
     super(:squared, input, output)
   end
@@ -14,10 +14,6 @@ class Gnuplot::Transpose::Squared < Gnuplot
 
   def y_label
     'Frequencia'
-  end
-
-  def eps_output
-    '../eps/transpose/squared.eps'
   end
 
   def plots
