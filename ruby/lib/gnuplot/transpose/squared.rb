@@ -1,5 +1,6 @@
 Utils::Loader.batch_require_cascade(%w(
   gnuplot/transpose
+  gnuplot/plot
 ))
 
 class Gnuplot::Transpose::Squared < Gnuplot
@@ -12,7 +13,16 @@ class Gnuplot::Transpose::Squared < Gnuplot
       xlabel: 'Numero Aleatorio',
       ylabel: 'Frequencia',
       output: '../eps/transpose/squared.eps',
-      input: '../data/transpose/squared.dat'
+      plots: plots
     }
   end
+
+  def plots
+    [
+      Gnuplot::Plot.new({
+        input: '../data/transpose/squared.dat'
+      })
+    ]
+  end
 end
+

@@ -8,4 +8,6 @@ set notitle
 set size 0.6,0.6
 set term postscript eps mono
 set out "<%= @output %>"
-plot '<%= @input %>' using ($1):($2) t "" w boxes
+plot <% @plots.each do |plot| %> \
+    '<%= plot.input %>' using ($1):($2) t "" w boxes
+  <% end %>

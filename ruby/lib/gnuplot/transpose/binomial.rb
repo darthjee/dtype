@@ -1,5 +1,6 @@
 Utils::Loader.batch_require_cascade(%w(
   gnuplot/transpose
+  gnuplot/plot
 ))
 
 class Gnuplot::Transpose::Binomial < Gnuplot
@@ -12,7 +13,16 @@ class Gnuplot::Transpose::Binomial < Gnuplot
       xlabel: 'Taxa de sucesso (%)',
       ylabel: 'Frequencia',
       output: '../eps/transpose/binomial.eps',
-      input: '../data/transpose/binomial.dat'
+      plots: plots
     }
   end
+
+  def plots
+    [
+      Gnuplot::Plot.new({
+        input: '../data/transpose/binomial.dat'
+      })
+    ]
+  end
 end
+
