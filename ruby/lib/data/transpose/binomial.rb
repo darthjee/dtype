@@ -1,7 +1,9 @@
-class Data::Transpose::Binomial
-  REQUIREMENTS=['data/source', 'data/transpose/binomial/experiment']
-  load_includes
+Utils::Loader.batch_require_cascade(%w(
+  data/source
+  data/transpose/binomial/experiment
+))
 
+class Data::Transpose::Binomial
   def run
     prepare
     data.keys.sort.each do |key|

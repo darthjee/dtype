@@ -16,11 +16,12 @@ build_$(DIR):
 	    TARGET=$$(cat $$SCRIPT | grep out | grep .eps); \
 	    TARGET=$${TARGET#*\"}; \
 	    TARGET=$${TARGET%\"*}; \
-	    make IN=$$SCRIPT  OUT=$$TARGET $$TARGET; \
+	    REQUIREMENT=$$(cat $$SCRIPT | grep plot | grep \\.dat | sed -e "s/.*'\\(.*\\)'.*/\\1/g"); \
+	    make REQUIREMENT="$$REQUIREMENT" IN=$$SCRIPT  OUT=$$TARGET $$TARGET; \
 	  fi \
 	done
 
-$(OUT): $(IN)
+$(OUT): $(IN) $(REQUIREMENT)
 	gnuplot $(IN)
 
 clean:

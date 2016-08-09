@@ -10,9 +10,7 @@ all:
 
 build_$(TARGET):
 	CURRENTDIR=$$(pwd); \
-	PARENTDIR=$${CURRENTDIR%/*}; \
-	PARENTDIR=$${PARENTDIR%/*}; \
-	TEXDIR=$$PARENTDIR/tex; \
+	TEXDIR=$$(/bin/bash -c 'cd ../../tex; pwd'); \
 	OUT=$$TEXDIR/$(TARGET).tex; \
 	IN=doc.tex.erb; \
 	REQUIREMENTS=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) tex:requirements[$(TARGET)]'); \
@@ -27,10 +25,7 @@ clean:
 	done
 
 clean_$(TARGET):
-	CURRENTDIR=$$(pwd); \
-	PARENTDIR=$${CURRENTDIR%/*}; \
-	PARENTDIR=$${PARENTDIR%/*}; \
-	TEXDIR=$$PARENTDIR/tex; \
+	TEXDIR=$$(/bin/bash -c 'cd ../../tex; pwd'); \
 	OUT=$$TEXDIR/$(TARGET).tex; \
 	rm -f $$OUT
 
