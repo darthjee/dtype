@@ -20,7 +20,8 @@ class Gnuplot::Transpose::Binomial < Gnuplot
   def plots
     [
       Gnuplot::Plot.new({
-        input: '../data/transpose/binomial.dat'
+        input: '../data/transpose/binomial.dat',
+        with: :boxes
       })
     ]
   end
