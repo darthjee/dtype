@@ -47,9 +47,9 @@ module Utils
 
     def require_cascade
       array.inject([]) do |prev, current|
-        prev << current
-        self.class.new(prev).require_class if current.match(/\w+/)
-        prev
+        (prev << current).tap do |libs|
+          self.class.new(libs).require_class if current.match(/\w+/)
+        end
       end
     end
 
