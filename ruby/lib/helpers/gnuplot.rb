@@ -13,6 +13,10 @@ module Helpers
     end
 
     def plot_line(plot)
+      plot_data_line(plot)
+    end
+
+    def plot_data_line(plot)
       [
          "'#{plot.input}'",
          "using ($#{plot.x_column}):($#{plot.y_column})",
