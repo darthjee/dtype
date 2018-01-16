@@ -1,6 +1,6 @@
 Utils::Loader.batch_require_cascade(%w(
   gnuplot/transpose
-  gnuplot/plot
+  gnuplot/plot/data
 ))
 
 class Gnuplot::Transpose::Squared < Gnuplot::Transpose
@@ -22,7 +22,7 @@ class Gnuplot::Transpose::Squared < Gnuplot::Transpose
 
   def plots
     [
-      Gnuplot::Plot.new({
+      Gnuplot::Plot::Data.new({
         input: '../data/transpose/squared.dat'
       })
     ]

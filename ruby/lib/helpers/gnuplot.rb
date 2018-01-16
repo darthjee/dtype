@@ -1,5 +1,3 @@
-Utils::Loader.require_cascade(%w(gnuplot))
-
 module Helpers
   module Gnuplot
     def range(array)
@@ -16,7 +14,7 @@ module Helpers
 
     def plot_line(plot)
       case plot
-      when ::Gnuplot::Plot
+      when ::Gnuplot::Plot::Data
         plot_data_line(plot)
       end
     end

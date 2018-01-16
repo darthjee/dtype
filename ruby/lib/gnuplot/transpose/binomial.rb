@@ -1,6 +1,6 @@
 Utils::Loader.batch_require_cascade(%w(
   gnuplot/transpose
-  gnuplot/plot
+  gnuplot/plot/data
 ))
 
 class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
@@ -18,7 +18,7 @@ class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
 
   def plots
     [
-      Gnuplot::Plot.new({
+      Gnuplot::Plot::Data.new({
         input: '../data/transpose/binomial.dat',
         with: :boxes
       })
