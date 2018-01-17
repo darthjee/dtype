@@ -16,7 +16,13 @@ module Helpers
       case plot
       when ::Gnuplot::Plot::Data
         plot_data_line(plot)
+      when ::Gnuplot::Plot::Function
+        plot_function(plot)
       end
+    end
+
+    def plot_function(plot)
+      plot.to_gnu
     end
 
     def plot_data_line(plot)
