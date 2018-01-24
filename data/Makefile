@@ -4,7 +4,7 @@ RUNNER=rake
 TASK_REPORTS=data
 REPORT=data
 REPORT_FILE=$(TASK)/$(REPORT).dat
-REPORT_REQUIREMENTS=''
+REPORT_REQUIREMENTS=$$(find ../ruby -type f)
 
 all:
 	for TASK in $(TASKS); do \
@@ -19,8 +19,7 @@ build_$(TASK):
 	done
 
 build_$(TASK)_$(REPORT):
-	REPORT_REQUIREMENT=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) data:requirements[$(TASK),$(REPORT)]'); \
-	make TASK=$(TASK) REPORT=$(REPORT) $(REPORT_FILE) REPORT_REQUIREMENS="$$REPORT_REQUIREMENT"
+	make TASK=$(TASK) REPORT=$(REPORT) $(REPORT_FILE)
 
 $(REPORT_FILE): $(REPORT_REQUIREMENS)
 	/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) data:create[$(TASK),$(REPORT)]'

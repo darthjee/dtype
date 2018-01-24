@@ -2,6 +2,7 @@ RUBYDIR=../../ruby
 RUNNER=rake
 TASKS=transpose
 DIR=
+REPORT_REQUIREMENTS=$$(find ../../ruby -type f)
 
 all:
 	for TASK in $(TASKS); do \
@@ -20,8 +21,7 @@ build_$(TASK)_$(GRAPH):
 	GNUDIR=$$(/bin/bash -c 'cd ../../gnuplot; pwd'); \
 	OUT=$$GNUDIR/$(TASK)/$(GRAPH).gnu; \
 	IN=plot.gnu.erb; \
-	REQUIREMENTS=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) gnuplot:requirements[$(TASK),$(GRAPH)]'); \
-	make TASK=$(TASK) GRAPH=$(GRAPH) OUT=$$OUT IN=$$CURRENTDIR/$$IN REQUIREMENTS="$$REQUIREMENTS" $$OUT
+	make TASK=$(TASK) GRAPH=$(GRAPH) OUT=$$OUT IN=$$CURRENTDIR/$$IN $$OUT
 
 $(OUT): $(IN) $(REQUIREMENTS)
 	/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) gnuplot:build[$(TASK),$(GRAPH),$(IN),$(OUT)]'
