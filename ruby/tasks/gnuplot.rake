@@ -20,15 +20,5 @@ namespace :gnuplot do
 
     project_class.new(input, output).build
   end
-
-  desc 'return the requirements for gnuplot building'
-  task :requirements, [:project,:graph] do |_task, args|
-    project = args[:project]
-    graph = args[:graph]
-
-    requirements =  Utils::Loader.requirements("gnuplot/#{project}/#{graph}")
-
-    puts requirements.map { |r| r.gsub(/^\.(.*)/,"#{Dir.pwd}\\1.rb") }.join(' ')
-  end
 end
 

@@ -11,14 +11,5 @@ namespace :tex do
 
     project_class.new(input, output).build
   end
-
-  desc 'return the requirements for tex building'
-  task :requirements, [:name] do |_task, args|
-    name = args[:name]
-
-    requirements =  Utils::Loader.requirements("tex/#{name}")
-
-    puts requirements.map { |r| r.gsub(/^\.(.*)/,"#{Dir.pwd}\\1.rb") }.join(' ')
-  end
 end
 

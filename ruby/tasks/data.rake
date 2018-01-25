@@ -18,16 +18,5 @@ namespace :data do
 
     report_class.new.run
   end
-
-  desc 'List data requirements'
-  task :requirements, [:project, :report] do |_task, args|
-    project = args[:project]
-    report = args[:report]
-
-    class_path = "data/#{project}/#{report}"
-    requirements =  Utils::Loader.requirements(class_path) 
-
-    puts requirements.map { |r| r.gsub(/^\.(.*)/,"#{Dir.pwd}\\1.rb") }.join(' ')
-  end
 end
 
