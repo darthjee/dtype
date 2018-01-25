@@ -13,6 +13,19 @@ module Helpers
     end
 
     def plot_line(plot)
+      case plot
+      when ::Gnuplot::Plot::Data
+        plot_data_line(plot)
+      when ::Gnuplot::Plot::Function
+        plot_function(plot)
+      end
+    end
+
+    def plot_function(plot)
+      plot.to_gnu
+    end
+
+    def plot_data_line(plot)
       [
          "'#{plot.input}'",
          "using ($#{plot.x_column}):($#{plot.y_column})",

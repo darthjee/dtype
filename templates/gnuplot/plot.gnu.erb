@@ -9,5 +9,5 @@ set size 0.6,0.6
 set term postscript eps mono
 set out "<%= @output %>"
 plot <% @plots.each do |plot| %> \
-       <%= plot_line(plot) %>
+       <%= plot_line(plot) %>, \
      <% end %>
