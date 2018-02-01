@@ -1,5 +1,3 @@
-Utils::Loader.require_cascade('gnuplot')
-
 class Gnuplot::Base < Gnuplot
   attr_reader :project, :graph
 

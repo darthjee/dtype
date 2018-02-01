@@ -1,5 +1,3 @@
-Utils::Loader.require_cascade('helpers/number')
-
 module Helpers
   module Tex
     include Helpers::Number

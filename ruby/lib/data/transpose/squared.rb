@@ -1,5 +1,3 @@
-Utils::Loader.require_cascade('data/source')
-
 class Data::Transpose::Squared
   def run
     prepare

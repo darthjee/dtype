@@ -1,5 +1,4 @@
 require 'danica'
-Utils::Loader.batch_require_cascade(%w(gnuplot/plot))
 
 class Gnuplot::Plot::Function < Gnuplot::Plot
   def to_gnu

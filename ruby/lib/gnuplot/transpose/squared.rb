@@ -1,9 +1,3 @@
-Utils::Loader.batch_require_cascade(%w(
-  gnuplot/transpose
-  gnuplot/plot/data
-  gnuplot/plot/function
-))
-
 class Gnuplot::Transpose::Squared < Gnuplot::Transpose
   def initialize(input, output)
     super(:squared, input, output)

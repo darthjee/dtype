@@ -1,8 +1,11 @@
-require './lib/utils/loader'
+lib = File.expand_path('..', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-Utils::Loader.base = './lib/'
-Utils::Loader.batch_require_cascade(%w(
-  core/array
-  utils
-))
+require 'core'
+require 'utils'
 
+require 'helpers'
+require 'data'
+require 'transpose'
+require 'tex'
+require 'gnuplot'

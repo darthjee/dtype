@@ -1,6 +1,6 @@
-Utils::Loader.require_cascade('utils/template')
-
 class Tex < Utils::Template
+  autoload :Transpose, 'tex/transpose'
+
   attr_reader :name
 
   def initialize(name, input, output, variables)

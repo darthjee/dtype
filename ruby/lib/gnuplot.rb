@@ -1,9 +1,8 @@
-Utils::Loader.batch_require_cascade(%w(
-  utils/template
-  helpers/gnuplot
-))
-
 class Gnuplot < Utils::Template
+  autoload :Base,      'gnuplot/base'
+  autoload :Plot,      'gnuplot/plot'
+  autoload :Transpose, 'gnuplot/transpose'
+
   attr_reader :x_range, :y_range, :x_label, :y_label
   private
 

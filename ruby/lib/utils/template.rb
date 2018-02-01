@@ -1,5 +1,3 @@
-Utils::Loader.require_cascade('utils/erb_builder')
-
 class Utils::Template
   attr_reader :input, :output, :variables, :helpers
 
