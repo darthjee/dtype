@@ -19,7 +19,8 @@ class Data::Transpose::Squared
   private
 
   def source
-    @source ||= Data::Source.new('../data/transpose/random.dat')
+    f = Utils::FilesLoader.data.transpose.for_path('random.dat')
+    @source ||= Data::Source.new(f.path)
   end
 
   def prepare

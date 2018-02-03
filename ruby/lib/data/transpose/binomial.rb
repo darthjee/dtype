@@ -21,8 +21,8 @@ class Data::Transpose::Binomial
   private
 
   def source
-    f = File.expand_path('../../../../../data/transpose/random.dat', __FILE__)
-    @source ||= Data::Source.new(f)
+    f = Utils::FilesLoader.data.transpose.for_path('random.dat')
+    @source ||= Data::Source.new(f.path)
   end
 
   def prepare

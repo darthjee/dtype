@@ -9,3 +9,5 @@ require 'data'
 require 'transpose'
 require 'tex'
 require 'gnuplot'
+
+Utils::FilesLoader.root = File.expand_path('../../../', __FILE__)
