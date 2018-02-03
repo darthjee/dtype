@@ -7,7 +7,7 @@ namespace :tex do
     input = args[:input]
     output = args[:output]
 
-    project_class = %W(tex #{name}).loader.require_constantize
+    project_class = %W(tex #{name}).loader.constantize
 
     project_class.new(input, output).build
   end
