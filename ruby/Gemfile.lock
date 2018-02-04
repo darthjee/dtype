@@ -16,6 +16,7 @@ GEM
       concurrent-ruby (~> 1.0)
     minitest (5.11.1)
     rake (11.2.2)
+    recursive-open-struct (1.0.5)
     safe_attribute_assignment (0.0.3)
       activesupport
     thread_safe (0.3.6)
@@ -29,6 +30,7 @@ DEPENDENCIES
   activesupport
   danica
   rake
+  recursive-open-struct
   safe_attribute_assignment
 
 BUNDLED WITH

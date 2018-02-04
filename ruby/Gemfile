@@ -6,3 +6,4 @@ gem 'rake'
 gem 'activesupport', require: false
 gem 'safe_attribute_assignment'
 gem 'danica'
+gem 'recursive-open-struct'

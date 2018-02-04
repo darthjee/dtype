@@ -21,7 +21,7 @@ class Data::Transpose::Binomial
   private
 
   def source
-    @source ||= Data::Source.new(Utils::FilesLoader.file('data/transpose/random.dat'))
+    @source ||= Data::Source.new(Utils::FilesLoader.file(Configuration.data.random_source))
   end
 
   def prepare
