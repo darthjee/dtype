@@ -1,13 +1,14 @@
 lib = File.expand_path('..', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require 'core'
-require 'utils'
+autoload :Utils,     'utils'
+autoload :Helpers,   'helpers'
+autoload :Transpose, 'transpose'
+autoload :Tex,       'tex'
+autoload :Gnuplot,   'gnuplot'
 
-require 'helpers'
+require 'core'
 require 'data'
-require 'transpose'
-require 'tex'
-require 'gnuplot'
+
 
 Utils::FilesLoader.root = File.expand_path('../../../', __FILE__)
