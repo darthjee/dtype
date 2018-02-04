@@ -1,10 +1,3 @@
-Utils::Loader.batch_require_cascade(%w(
-  helpers/tex
-  tex
-  transpose
-  core/string
-))
-
 class Tex::Transpose < Tex
   include Helpers::Tex
   

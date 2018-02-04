@@ -1,0 +1,20 @@
+default: &default
+  data:
+    random_source: 'data/transpose/random.dat'
+  transpose:
+    binomial:
+      segments: 100
+      times: 5000
+      throws: 50
+
+production:
+  <<: *default
+
+development:
+  <<: *default
+  transpose:
+    binomial:
+      segments: 10
+      times: 50
+      throws: 5
+

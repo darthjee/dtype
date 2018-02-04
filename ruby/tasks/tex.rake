@@ -7,18 +7,9 @@ namespace :tex do
     input = args[:input]
     output = args[:output]
 
-    project_class = %W(tex #{name}).loader.require_constantize
+    project_class = %W(tex #{name}).loader.constantize
 
     project_class.new(input, output).build
-  end
-
-  desc 'return the requirements for tex building'
-  task :requirements, [:name] do |_task, args|
-    name = args[:name]
-
-    requirements =  Utils::Loader.requirements("tex/#{name}")
-
-    puts requirements.map { |r| r.gsub(/^\.(.*)/,"#{Dir.pwd}\\1.rb") }.join(' ')
   end
 end
 

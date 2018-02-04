@@ -1,5 +1,3 @@
-Utils::Loader.batch_require_cascade(%w(gnuplot/plot))
-
 class Gnuplot::Plot::Data < Gnuplot::Plot
   attr_accessor :input, :title, :x_column, :y_column, :with
 

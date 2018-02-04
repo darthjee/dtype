@@ -1,6 +1,6 @@
 class Transpose
-  BINOMIAL_SEGMENTS=100
-  BINOMIAL_TIMES=5000
-  BINOMIAL_THROWS=50
+  BINOMIAL_SEGMENTS=Configuration.transpose.binomial.segments
+  BINOMIAL_TIMES=Configuration.transpose.binomial.times
+  BINOMIAL_THROWS=Configuration.transpose.binomial.throws
   BINOMIAL_TOTAL = BINOMIAL_SEGMENTS * BINOMIAL_TIMES * BINOMIAL_THROWS
 end

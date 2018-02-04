@@ -1,9 +1,5 @@
-Utils::Loader.batch_require_cascade(%w(
-  data/source
-  data/transpose/binomial/experiment
-))
-
 class Data::Transpose::Binomial
+  autoload :Experiment, 'data/transpose/binomial/experiment'
   def run
     prepare
     data.keys.sort.each do |key|
@@ -25,7 +21,7 @@ class Data::Transpose::Binomial
   private
 
   def source
-    @source ||= Data::Source.new('../data/transpose/random.dat')
+    @source ||= Data::Source.new(Utils::FilesLoader.file(Configuration.data.random_source))
   end
 
   def prepare

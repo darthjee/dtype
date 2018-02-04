@@ -4,7 +4,7 @@ namespace :gnuplot do
   desc 'List all gnu files to be processed'
   task :list, [:project] do |_task,args|
     project = args[:project]
-    project_class = %W(gnuplot #{project}).loader.require_constantize
+    project_class = %W(gnuplot #{project}).loader.constantize
 
     puts project_class::TASKS
   end
@@ -16,19 +16,9 @@ namespace :gnuplot do
     input = args[:input]
     output = args[:output]
 
-    project_class = %W(gnuplot #{project} #{graph}).loader.require_constantize
+    project_class = %W(gnuplot #{project} #{graph}).loader.constantize
 
     project_class.new(input, output).build
-  end
-
-  desc 'return the requirements for gnuplot building'
-  task :requirements, [:project,:graph] do |_task, args|
-    project = args[:project]
-    graph = args[:graph]
-
-    requirements =  Utils::Loader.requirements("gnuplot/#{project}/#{graph}")
-
-    puts requirements.map { |r| r.gsub(/^\.(.*)/,"#{Dir.pwd}\\1.rb") }.join(' ')
   end
 end
 

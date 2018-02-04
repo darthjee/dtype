@@ -1,5 +1,3 @@
-Utils::Loader.require_cascade('data/source')
-
 class Data::Transpose::Squared
   def run
     prepare
@@ -21,7 +19,7 @@ class Data::Transpose::Squared
   private
 
   def source
-    @source ||= Data::Source.new('../data/transpose/random.dat')
+    @source ||= Data::Source.new(Utils::FilesLoader.file(Configuration.data.random_source))
   end
 
   def prepare
