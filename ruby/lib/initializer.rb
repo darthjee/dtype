@@ -17,5 +17,12 @@ Utils::FilesLoader.root = File.expand_path('../../../', __FILE__)
 Configuration.configure({
   data: {
     random_source: 'data/transpose/random.dat'
+  },
+  transpose: {
+    binomial: {
+      segments: 100,
+      times: 5000,
+      throws: 50
+    }
   }
 })
