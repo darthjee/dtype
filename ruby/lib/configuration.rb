@@ -6,7 +6,7 @@ class Configuration
   include Singleton
 
   class << self
-    delegate :configure, :method_missing, to: :instance
+    delegate :configure, :env, :env=, :method_missing, to: :instance
   end
 
   attr_reader :config
@@ -21,9 +21,18 @@ class Configuration
     config_object.public_send(method, *args)
   end
 
+  def env
+    @env ||= 'development'
+  end
+
+  def env=(env)
+    @config_object = nil
+    @env = env
+  end
+
   private
 
   def config_object
-    @config_object ||= RecursiveOpenStruct.new(config)
+    @config_object ||= RecursiveOpenStruct.new(config[env])
   end
 end

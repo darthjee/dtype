@@ -11,18 +11,13 @@ require 'configuration'
 
 require 'core'
 require 'data'
+require 'yaml'
 
 Utils::FilesLoader.root = File.expand_path('../../../', __FILE__)
 
-Configuration.configure({
-  data: {
-    random_source: 'data/transpose/random.dat'
-  },
-  transpose: {
-    binomial: {
-      segments: 100,
-      times: 5000,
-      throws: 50
-    }
-  }
-})
+Configuration.env = ENV['ENV']
+Configuration.configure(
+  YAML.load(
+    File.read('config.yml')
+  )
+)
