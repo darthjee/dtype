@@ -8,11 +8,11 @@ class Gnuplot::Transpose::Squared < Gnuplot::Transpose
   end
   
   def x_label
-    'Numero Aleatorio'
+    'Random Number'
   end
 
   def y_label
-    'Frequencia'
+    'Frequency'
   end
 
   def plots

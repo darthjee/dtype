@@ -4,11 +4,11 @@ class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
   end
 
   def x_label
-    'Taxa de sucesso (%)'
+    'Success Rate (%)'
   end
 
   def y_label
-    'Frequencia'
+    'Frequency'
   end
 
   def plots
