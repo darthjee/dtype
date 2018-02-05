@@ -1,26 +1,26 @@
-\section{Introdu\c{c}\~{a}o}
+\section{Introduction}
 
-Podemos utilizar a estat\'{i}stica para entender eventos binomiais, que s\~{a}o os modelos
-em que duas alternativas s\~{a}o apresentadas, sucesso e falha.
+We may use statistics to understand binomial events that are models where
+two alternatives are presented, option A or option B.
 
-Alguns modelos binomiais comuns no universo de simula\c{c}\~{a}o
-s\~{a}o aqueles em que um modelo simula um evento com uma probabilidade de acerto.
-Um numero aleat\'{o}rio \'{e} gerado
-e comparado com um lim\'{i}te, e caso este valor passe ou
-fique abaixo deste lim\'{i}te o evento \'{e} considerado um sucesso ou uma falha.
+Some common binomial models are being born a female or male, having or not an specif genetic trait,
+or even a success or failure on the toss of a coin or dice, which can usually
+be simulated with the generation of a random number (equivalent of the toss of a dice in the discrete universe),
+and the check it against a threashold that would define it as being
+option A or B, or success or failure if you will.
 
-Em um universo discreto, este numero seria o equivalente a um lan\c{c}amento de um dado,
-onde um numero \'{e} utilizado como par\^{a}metro de sucesso, como por exemplo, o n\'umero limite 16 (valores > 16
-s\~ao considerados sucesso)
-em um lan\c{c}amento de um dado de 20 faces tem uma taxa de sucesso de $25\%$
+An example would be the toss of a $20$ sided dice and set the threashold as $16$ so any value higher
+than that is considered a success givin us a $25\%$ success rate.
 
-Para uma simula\c{c}\~{a}o, utilizamos geradores aleat\'{o}rios de dsitribui\c{c}\~{a}o quadrada, onde
-todos os valores tem a mesma probabílidade de serem lan\c{c}ados
-de uma distribui\c{c}\~{a}o quadrada (figura \ref{intro:squared}), variando entre $0$ e $1$
-e comparamos este valor contra um limite de sucesso do dito evento.
+In order to simulate this toss, we use a square probability distribuited (fig \ref{intro:squared}) number generator
+where every number has the same probability of comming out, varaying from the range of 0 to 1
+then compare it with the equivalent threashold ($0.75$ for a $25\%$ success rate) to determin if an event was
+a success or failure.
 
-Repetimos o procedimento \introexperimentsize{} vezes para cada experimento obtendo um indice de sucesso,
-e repetindo o experimento \introexperimentrepeats{} vezes gerando um histograma de indices obtendo o gr\'{a}fico
+We repete the procediment \introexperimentsize{} times so that we can obtein the given success rate of that experiment
+which may be different from the theoretical expected success rate, but by repeating the experiment
+\introexperimentrepeats{} times we can build an histogram of success rate which should have it's peak around the
+expected success rate.
 \ref{intro:binomial}
 
 \begin{center}
