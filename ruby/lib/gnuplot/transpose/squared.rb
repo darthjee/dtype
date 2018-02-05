@@ -3,22 +3,14 @@ class Gnuplot::Transpose::Squared < Gnuplot::Transpose
     super(:squared, input, output)
   end
 
-  def y_range
-    [0]
-  end
-  
-  def x_label
-    'Numero Aleatorio'
-  end
-
-  def y_label
-    'Frequencia'
-  end
+  default_value :y_range, [ 0 ]
+  default_value :x_label, 'Random Number'
+  default_value :y_label, 'Frequency'
 
   def plots
     [
       Gnuplot::Plot::Data.new({
-        input: '../data/transpose/squared.dat'
+        input: Utils::FilesLoader.file(Configuration.data.transpose.squared.dat)
       })
     ]
   end

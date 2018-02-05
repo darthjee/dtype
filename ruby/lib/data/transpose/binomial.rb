@@ -1,5 +1,6 @@
 class Data::Transpose::Binomial
   autoload :Experiment, 'data/transpose/binomial/experiment'
+
   def run
     prepare
     data.keys.sort.each do |key|
@@ -19,6 +20,9 @@ class Data::Transpose::Binomial
   end
 
   private
+
+  default_value :times, ::Transpose::BINOMIAL_TIMES
+  default_value :segments, ::Transpose::BINOMIAL_SEGMENTS
 
   def source
     @source ||= Data::Source.new(Utils::FilesLoader.file(Configuration.data.random_source))
@@ -42,20 +46,12 @@ class Data::Transpose::Binomial
     @data ||= {}
   end
 
-  def segments
-    ::Transpose::BINOMIAL_SEGMENTS
-  end
-
   def total_times
     @total_times ||= times * segments
   end
 
-  def times
-    ::Transpose::BINOMIAL_TIMES
-  end
-
   def file
-    @file ||= File.open('../data/transpose/binomial.dat', 'w')
+    @file ||= File.open(Utils::FilesLoader.file(Configuration.data.transpose.binomial.dat), 'w')
   end
 end
 

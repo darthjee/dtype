@@ -3,19 +3,14 @@ class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
     super(:binomial, input, output)
   end
 
-  def x_label
-    'Taxa de sucesso (%)'
-  end
-
-  def y_label
-    'Frequencia'
-  end
+  default_value :x_label, 'Success Rate (%)'
+  default_value :y_label, 'Frequency'
 
   def plots
     [
       Gnuplot::Plot::Function.new,
       Gnuplot::Plot::Data.new({
-        input: '../data/transpose/binomial.dat',
+        input: Utils::FilesLoader.file(Configuration.data.transpose.binomial.dat),
         with: :boxes
       })
     ]
