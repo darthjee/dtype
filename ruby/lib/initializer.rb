@@ -1,13 +1,14 @@
 lib = File.expand_path('..', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-autoload :Utils,     'utils'
-autoload :Helpers,   'helpers'
-autoload :Transpose, 'transpose'
-autoload :Tex,       'tex'
-autoload :Gnuplot,   'gnuplot'
+autoload :Utils,         'utils'
+autoload :Helpers,       'helpers'
+autoload :Transpose,     'transpose'
+autoload :Tex,           'tex'
+autoload :Gnuplot,       'gnuplot'
+autoload :Configuration, 'configuration'
 
-require 'configuration'
+require 'darthjee/core_ext/object/default_value'
 
 require 'core'
 require 'data'

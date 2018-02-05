@@ -3,17 +3,9 @@ class Gnuplot::Transpose::Squared < Gnuplot::Transpose
     super(:squared, input, output)
   end
 
-  def y_range
-    [0]
-  end
-  
-  def x_label
-    'Random Number'
-  end
-
-  def y_label
-    'Frequency'
-  end
+  default_value :y_range, [ 0 ]
+  default_value :x_label, 'Random Number'
+  default_value :y_label, 'Frequency'
 
   def plots
     [

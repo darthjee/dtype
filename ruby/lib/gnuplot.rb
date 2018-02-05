@@ -4,11 +4,10 @@ class Gnuplot < Utils::Template
   autoload :Transpose, 'gnuplot/transpose'
 
   attr_reader :x_range, :y_range, :x_label, :y_label
+
   private
 
-  def helpers
-    [ Helpers::Gnuplot ]
-  end
+  default_value :helpers, [ Helpers::Gnuplot ]
 
   def default_variables
     {

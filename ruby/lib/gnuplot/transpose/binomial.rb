@@ -3,13 +3,8 @@ class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
     super(:binomial, input, output)
   end
 
-  def x_label
-    'Success Rate (%)'
-  end
-
-  def y_label
-    'Frequency'
-  end
+  default_value :x_label, 'Success Rate (%)'
+  default_value :y_label, 'Frequency'
 
   def plots
     [

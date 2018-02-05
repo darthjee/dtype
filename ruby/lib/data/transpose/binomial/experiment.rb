@@ -14,16 +14,14 @@ class Data::Transpose::Binomial
 
     private
 
+    default_value :times, ::Transpose::BINOMIAL_THROWS
+
     def throw_dice
       register(source.get)
     end
 
     def register(value)
       @successes += 1 if value >= 0.5
-    end
-
-    def times
-      ::Transpose::BINOMIAL_THROWS
     end
   end
 end
