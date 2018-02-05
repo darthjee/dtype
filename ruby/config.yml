@@ -1,6 +1,11 @@
 default: &default
   data:
     random_source: 'data/transpose/random.dat'
+    transpose:
+      binomial:
+        dat: 'data/transpose/binomial.dat'
+      squared:
+        dat: 'data/transpose/squared.dat'
   transpose:
     binomial:
       segments: 100

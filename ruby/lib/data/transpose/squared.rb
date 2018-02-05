@@ -44,7 +44,7 @@ class Data::Transpose::Squared
   end
 
   def file
-    @file ||= File.open('../data/transpose/squared.dat', 'w')
+    @file ||= File.open(Utils::FilesLoader.file(Configuration.data.transpose.squared.dat), 'w')
   end
 end
 

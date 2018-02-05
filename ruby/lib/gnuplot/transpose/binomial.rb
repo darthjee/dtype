@@ -10,7 +10,7 @@ class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
     [
       Gnuplot::Plot::Function.new,
       Gnuplot::Plot::Data.new({
-        input: '../data/transpose/binomial.dat',
+        input: Utils::FilesLoader.file(Configuration.data.transpose.binomial.dat),
         with: :boxes
       })
     ]

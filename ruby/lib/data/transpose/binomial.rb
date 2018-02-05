@@ -51,7 +51,7 @@ class Data::Transpose::Binomial
   end
 
   def file
-    @file ||= File.open('../data/transpose/binomial.dat', 'w')
+    @file ||= File.open(Utils::FilesLoader.file(Configuration.data.transpose.binomial.dat), 'w')
   end
 end
 
