@@ -8,8 +8,8 @@ class Tex::Transpose < Tex
 
   def default_variables
     {
-      title: 'Transposiçao de distribuiçao Quadrada em distribuiçao normal',
-      foot: 'Estudos para R-Type',
+      title: 'Transposition of squared distribuition probability to normal distribuition',
+      foot: 'Studies for R-Type',
       defines: defines
     }
   end
