@@ -18,3 +18,11 @@ development:
       times: 50
       throws: 5
 
+pre:
+  <<: *default
+  transpose:
+    binomial:
+      segments: 20
+      times: 100
+      throws: 20
+
