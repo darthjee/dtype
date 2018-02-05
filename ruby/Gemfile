@@ -7,3 +7,4 @@ gem 'activesupport', require: false
 gem 'safe_attribute_assignment'
 gem 'danica'
 gem 'recursive-open-struct'
+gem 'darthjee-core_ext', '~> 1.5.3'
