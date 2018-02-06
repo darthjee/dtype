@@ -25,7 +25,7 @@ class Data::Transpose::Binomial
   default_value :segments, ::Transpose::BINOMIAL_SEGMENTS
 
   def source
-    @source ||= Data::Source.new(Utils::FilesLoader.file(Configuration.data.random_source))
+    @source ||= Data::Source.new(Utils::FilesLoader.data.random_source.to_s)
   end
 
   def prepare
@@ -51,7 +51,7 @@ class Data::Transpose::Binomial
   end
 
   def file
-    @file ||= File.open(Utils::FilesLoader.file(Configuration.data.transpose.binomial.dat), 'w')
+    @file ||= File.open(Utils::FilesLoader.data.transpose.binomial.dat.to_s, 'w')
   end
 end
 
