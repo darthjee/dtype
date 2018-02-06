@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require 'initializer'
 
 RSpec.configure do |config|

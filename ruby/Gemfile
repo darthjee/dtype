@@ -11,4 +11,5 @@ gem 'darthjee-core_ext', '~> 1.5.3'
 
 group :test do
   gem 'rspec'
+  gem 'simplecov'
 end
