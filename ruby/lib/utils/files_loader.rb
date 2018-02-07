@@ -17,11 +17,8 @@ class Utils::FilesLoader
     @config = config
   end
 
-  def to_s
-    self.class.file(config)
-  end
-
   def method_missing(method, *args)
-    self.class.new(config.public_send(method))
+    path = config.public_send(method)
+    path.is_a?(RecursiveOpenStruct) ? self.class.new(path) : self.class.file(path)
   end
 end

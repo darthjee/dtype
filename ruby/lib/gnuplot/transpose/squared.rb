@@ -10,7 +10,7 @@ class Gnuplot::Transpose::Squared < Gnuplot::Transpose
   def plots
     [
       Gnuplot::Plot::Data.new({
-        input: Utils::FilesLoader.data.transpose.squared.dat.to_s
+        input: Utils::FilesLoader.data.transpose.squared.dat
       })
     ]
   end
