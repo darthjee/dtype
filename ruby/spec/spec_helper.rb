@@ -18,6 +18,6 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.before do
-    Utils::FilesLoader.root = '/root'
+    Utils::FilesLoader.root = File.expand_path('../output', __FILE__)
   end
 end

@@ -15,7 +15,7 @@ default: &default
 production:
   <<: *default
 
-development:
+development: &development
   <<: *default
   transpose:
     binomial:
@@ -31,3 +31,5 @@ pre:
       times: 100
       throws: 25
 
+test:
+  <<: *development

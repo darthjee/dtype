@@ -2,6 +2,9 @@ require 'spec_helper'
 
 RSpec.describe Utils::FilesLoader do
   let(:file_path) { 'path/to/file' }
+  before do
+    described_class.root = '/root'
+  end
   subject do
     described_class.new(file_path)
   end
