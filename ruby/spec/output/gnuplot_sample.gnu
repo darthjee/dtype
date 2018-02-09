@@ -1,0 +1,7 @@
+defined range: [1:10]
+no left range: [*:10]
+no right range: [1:*]
+no limits range: [*:*]
+missing range: [1:*]
+missing all range: [*]
+nil range: [*:*]
