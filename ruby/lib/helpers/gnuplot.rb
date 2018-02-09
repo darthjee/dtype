@@ -1,12 +1,9 @@
 module Helpers
   module Gnuplot
     def range(array)
-      if array.nil?
-        array = Array.new(2)
-      end
-      if array.size < 2
-        array = array + [ nil ]
-      end
+      array = array.nil? ?
+              Array.new(2) :
+              (array + Array.new(2 - array.size))
 
       array = array.map { |v| v.nil? ? '*' : v.to_s }
       "[#{array.join(':')}]"
