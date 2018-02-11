@@ -1,0 +1,10 @@
+dependencies:
+  post:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./ruby/cc-test-reporter
+    - chmod +x ./ruby/cc-test-reporter
+
+test:
+  pre:
+    - bash -c 'cd ruby; bundle install; ./cc-test-reporter before-build'
+  override:
+    - cd ruby; COVERAGE=true bundle exec rspec; ./cc-test-reporter after-build -t simplecov --exit-code $?
