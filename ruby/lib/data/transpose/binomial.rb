@@ -1,57 +1,27 @@
 class Data::Transpose::Binomial
   autoload :Experiment, 'data/transpose/binomial/experiment'
+  autoload :Runner,     'data/transpose/binomial/runner'
 
-  def run
-    prepare
-    data.keys.sort.each do |key|
-      value = data[key]
-      file.write("#{key}\t#{value * 1.0 / times}\n")
-    end
-    file.close
-    source.close
-  end
-
-  def [](value)
-    data[value] ||= 0
-  end
-
-  def []=(key, value)
-    data[key] = value
-  end
+  delegate :run, to: :runner
 
   private
 
-  default_value :times, ::Transpose::BINOMIAL_TIMES
-  default_value :segments, ::Transpose::BINOMIAL_SEGMENTS
+  default_value :times,       Transpose::BINOMIAL_TIMES
+  default_value :segments,    Transpose::BINOMIAL_SEGMENTS
+  default_value :throws,      Transpose::BINOMIAL_THROWS
+  default_value :source_path, Utils::FilesLoader.data.random_source
+  default_value :output_path, Utils::FilesLoader.data.transpose.binomial.dat
+
+  def runner
+    @runner ||= Runner.new(times, segments, throws, source, output)
+  end
 
   def source
-    @source ||= Data::Source.new(Utils::FilesLoader.data.random_source)
+    @source ||= Data::Source.new(source_path)
   end
 
-  def prepare
-    total_times.times do
-      register(Experiment.new(source, ::Transpose::BINOMIAL_THROWS).success_rate)
-    end
-  end
-
-  def register(value)
-    self[normalized(value)] += 1
-  end
-
-  def normalized(value)
-    (value * segments).to_i * 1.0
-  end
-
-  def data
-    @data ||= {}
-  end
-
-  def total_times
-    @total_times ||= times * segments
-  end
-
-  def file
-    @file ||= File.open(Utils::FilesLoader.data.transpose.binomial.dat, 'w')
+  def output
+    @output ||= File.open(output_path, 'w')
   end
 end
 
