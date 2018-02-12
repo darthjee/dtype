@@ -30,7 +30,7 @@ class Data::Transpose::Binomial
 
   def prepare
     total_times.times do
-      register(Experiment.new(source).success_rate)
+      register(Experiment.new(source, ::Transpose::BINOMIAL_THROWS).success_rate)
     end
   end
 

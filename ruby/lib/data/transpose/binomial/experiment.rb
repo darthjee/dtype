@@ -1,10 +1,11 @@
 class Data::Transpose::Binomial
   class Experiment
-    attr_reader :successes, :source
+    attr_reader :successes, :source, :times
 
-    def initialize(source)
+    def initialize(source, times)
       @source = source
       @successes = 0
+      @times = times
       times.times { throw_dice }
     end
 
@@ -13,8 +14,6 @@ class Data::Transpose::Binomial
     end
 
     private
-
-    default_value :times, ::Transpose::BINOMIAL_THROWS
 
     def throw_dice
       register(source.get)
