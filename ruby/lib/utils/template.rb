@@ -10,6 +10,7 @@ class Utils::Template
 
   def build
     output_file.write erb_builder.result
+    output_file.close
   end
 
   private

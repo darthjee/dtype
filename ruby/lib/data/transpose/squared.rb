@@ -22,7 +22,7 @@ class Data::Transpose::Squared
   default_value :segments, ::Transpose::BINOMIAL_SEGMENTS
 
   def source
-    @source ||= Data::Source.new(Utils::FilesLoader.file(Configuration.data.random_source))
+    @source ||= Data::Source.new(Utils::FilesLoader.data.random_source)
   end
 
   def prepare
@@ -44,7 +44,7 @@ class Data::Transpose::Squared
   end
 
   def file
-    @file ||= File.open(Utils::FilesLoader.file(Configuration.data.transpose.squared.dat), 'w')
+    @file ||= File.open(Utils::FilesLoader.data.transpose.squared.dat, 'w')
   end
 end
 

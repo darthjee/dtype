@@ -6,3 +6,5 @@ eps
 data/*/
 tex/*.tex
 gnuplot/transpose
+ruby/coverage
+ruby/spec/output/*
