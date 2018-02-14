@@ -41,7 +41,8 @@ class Data::Transpose::Binomial
     end
 
     def normalized(value)
-      (value * segments).to_i * 1.0
+      return 1 - 1.0 / 2 / segments if value == 1
+      (1 + (value * segments).to_i * 2) / 2.0 / segments
     end
 
     def data

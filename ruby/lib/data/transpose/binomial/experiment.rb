@@ -6,14 +6,18 @@ class Data::Transpose::Binomial
       @source = source
       @successes = 0
       @times = times
-      times.times { throw_dice }
     end
 
     def success_rate
-      1.0 * successes / times
+      @success_rate ||= calculate_success_rate
     end
 
     private
+
+    def calculate_success_rate
+      times.times { throw_dice }
+      1.0 * successes / times
+    end
 
     def throw_dice
       register(source.get)
