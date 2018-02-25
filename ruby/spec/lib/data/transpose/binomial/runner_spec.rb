@@ -9,9 +9,6 @@ describe Data::Transpose::Binomial::Runner do
   subject do
     described_class.new(times, segments, throws, source, output)
   end
-  after do
-    source.close
-  end
   before do
     allow_any_instance_of(Data::Transpose::Binomial::Experiment).to receive(:success_rate) do
       experiments.shift
