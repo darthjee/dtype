@@ -4,8 +4,8 @@ describe Data::Transpose::Binomial::Runner do
   let(:times) { 1 }
   let(:throws) { double }
   let(:total) { times * throws * segments }
-  let(:source) { double(Data::Source) }
-  let(:output) { double(File) }
+  let(:source) { double(Data::Source, close: nil) }
+  let(:output) { double(File, close: nil) }
   subject do
     described_class.new(times, segments, throws, source, output)
   end
@@ -17,8 +17,6 @@ describe Data::Transpose::Binomial::Runner do
       key, count = value.split("\t").map(&:to_f)
       output_values[key] = count
     end
-    allow(source).to receive(:close)
-    allow(output).to receive(:close)
   end
   let(:output_values) { {} }
 
