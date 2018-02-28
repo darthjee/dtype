@@ -1,21 +1,21 @@
 class Data::Transpose::Squared
   class Runner
-    attr_reader :times, :segments, :source, :file
+    attr_reader :times, :segments, :source, :output
 
-    def initialize(times, segments, source, file)
+    def initialize(times, segments, source, output)
       @times = times
       @segments = segments
       @source = source
-      @file = file
+      @output = output
     end
 
     def run
       prepare
       data.keys.sort.each do |key|
         value = data[key]
-        file.write("#{key}\t#{value * 1.0 / times}\n")
+        output.write("#{key}\t#{value * 1.0 / times}\n")
       end
-      file.close
+      output.close
       source.close
     end
 
