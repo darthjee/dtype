@@ -11,8 +11,9 @@ class Data::Transpose::Squared
 
     def run
       prepare
-      data.each do |key, value|
-        file.write("#{key}\t#{value * 1.0 / times * segments}\n")
+      data.keys.sort.each do |key|
+        value = data[key]
+        file.write("#{key}\t#{value * 1.0 / times}\n")
       end
       file.close
       source.close
@@ -29,7 +30,7 @@ class Data::Transpose::Squared
     private
 
     def prepare
-      times.times do
+      total_times.times do
         register(source.get)
       end
     end
@@ -45,6 +46,10 @@ class Data::Transpose::Squared
 
     def data
       @data ||= {}
+    end
+
+    def total_times
+      @total_times ||= times * segments
     end
   end
 end
