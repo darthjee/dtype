@@ -4,7 +4,7 @@ describe Data::Transpose::Binomial::Experiment do
   let(:source) { double(Data::Source) }
   let(:times) { random_list.size }
   let(:random_list) do
-    Array.new(Random.rand * 20 + 10) { Random.rand }
+    Array.new(Random.rand(20) + 10) { Random.rand }
   end
 
   subject do
@@ -48,6 +48,20 @@ describe Data::Transpose::Binomial::Experiment do
         expect do
           subject.reset
         end.to change(subject, :success_rate)
+      end
+    end
+
+    context 'when calling several times' do
+      before do
+        allow(source).to receive(:get) { 0.5 + Random.rand(0.5) }
+        Random.rand(10).times do
+          subject.success_rate
+          subject.reset
+        end
+      end
+
+      it 'does not accumulate success' do
+        expect(subject.success_rate).to be <= (1)
       end
     end
   end

@@ -14,6 +14,7 @@ class Data::Transpose::Binomial
 
     def reset
       @success_rate = nil
+      @successes = 0
     end
 
     private
