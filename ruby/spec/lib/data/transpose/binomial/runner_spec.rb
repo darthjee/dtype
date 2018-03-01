@@ -2,17 +2,15 @@ require 'spec_helper'
 
 describe Data::Transpose::Binomial::Runner do
   let(:times) { 1 }
-  let(:throws) { double }
   let(:total) { times * throws * segments }
-  let(:source) { double(Data::Source, close: nil) }
+  let(:segments) { 3 }
+  let(:throws) { 10  }
+  let(:source) { Data::Source.new(Utils::FilesLoader.file('fixtures/data/source.dat')) }
   let(:output) { double(File, close: nil) }
   subject do
-    described_class.new(times, segments, throws, source, output)
+    described_class.new(times, segments, experiment, source, output)
   end
   before do
-    allow_any_instance_of(Data::Transpose::Binomial::Experiment).to receive(:success_rate) do
-      experiments.shift
-    end
     allow(output).to receive(:write) do |value|
       key, count = value.split("\t").map(&:to_f)
       output_values[key] = count
@@ -21,65 +19,73 @@ describe Data::Transpose::Binomial::Runner do
   let(:output_values) { {} }
 
   describe '#run' do
-    before do
-      subject.run
-    end
-
-    context 'when there is one segment' do
-      let(:segments) { 1 }
-
-      context 'and its perfectly fitted' do
-        let(:experiments) { [0.5] }
-
-        it 'returns the center of graph' do
-          expect(output_values).to eq(0.5 => 1)
+    context 'when having a simple experiment' do
+      let(:experiment) do
+        double(Data::Transpose::Binomial::Experiment, reset: nil)
+      end
+      before do
+        allow(experiment).to receive(:success_rate) do
+          experiments.shift
         end
+        subject.run
       end
 
-      context 'when the result is not perfectly fit to the center' do
-        context 'on the far right' do
-          let(:experiments) { [1] }
+      context 'when there is one segment' do
+        let(:segments) { 1 }
+
+        context 'and its perfectly fitted' do
+          let(:experiments) { [0.5] }
 
           it 'returns the center of graph' do
             expect(output_values).to eq(0.5 => 1)
           end
         end
-        context 'on the far left' do
-          let(:experiments) { [0] }
 
-          it 'returns the center of graph' do
-            expect(output_values).to eq(0.5 => 1)
+        context 'when the result is not perfectly fit to the center' do
+          context 'on the far right' do
+            let(:experiments) { [1] }
+
+            it 'returns the center of graph' do
+              expect(output_values).to eq(0.5 => 1)
+            end
+          end
+          context 'on the far left' do
+            let(:experiments) { [0] }
+
+            it 'returns the center of graph' do
+              expect(output_values).to eq(0.5 => 1)
+            end
+          end
+        end
+      end
+
+      context 'when there are 2 segments' do
+        let(:segments) { 2 }
+        context 'and there are several rolls' do
+          let(:times) { 3 }
+          let(:experiments) { [0, 0.25, 0.3, 0.5, 0.75, 1] }
+
+          it 'returns the calculated graph' do
+            expect(output_values).to eq(
+              0.25 => 1,
+              0.75 => 1
+            )
           end
         end
       end
     end
 
-    context 'when there are 2 segments' do
-      let(:segments) { 2 }
-      context 'and there are several rolls' do
-        let(:times) { 3 }
-        let(:experiments) { [0, 0.25, 0.3, 0.5, 0.75, 1] }
-
-        it 'returns the calculated graph' do
-          expect(output_values).to eq(
-            0.25 => 1,
-            0.75 => 1
-          )
-        end
+    context 'when there are several segments' do
+      let(:times) { 10 }
+      let(:experiment) do
+        Data::Transpose::Binomial::Experiment.new(source, throws)
       end
-    end
-
-    context 'when there are several segmenst' do
-      let(:segments) { (Random.rand * 10).to_i + 2 }
-      let(:times) { ((Random.rand * 10).to_i + 2) * segments }
-      let(:experiments) { Array.new(segments * times) { Random.rand } }
+      before do
+        subject.run
+      end
 
       it 'integrates to 1' do
-        expect(output_values.values.sum).to eq(segments)
-      end
-
-      it 'creates the expected lanes' do
-        expect((2 * output_values.keys.sum).round).to eq(segments)
+        expect(output_values.values.sum.round).to eq(segments)
       end
 
       it 'creates the expected lanes' do

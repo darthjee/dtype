@@ -1,11 +1,11 @@
 class Data::Transpose::Binomial
   class Runner
-    attr_reader :times, :segments, :throws, :source, :output
+    attr_reader :times, :segments, :experiment, :source, :output
 
-    def initialize(times, segments , throws, source, output)
+    def initialize(times, segments , experiment, source, output)
       @times = times
       @segments = segments
-      @throws = throws
+      @experiment = experiment
       @source = source
       @output = output
     end
@@ -32,7 +32,8 @@ class Data::Transpose::Binomial
 
     def prepare
       total_times.times do
-        register(Experiment.new(source, throws).success_rate)
+        experiment.reset
+        register(experiment.success_rate)
       end
     end
 
