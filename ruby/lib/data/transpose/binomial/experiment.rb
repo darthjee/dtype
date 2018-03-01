@@ -12,6 +12,10 @@ class Data::Transpose::Binomial
       @success_rate ||= calculate_success_rate
     end
 
+    def reset
+      @success_rate = nil
+    end
+
     private
 
     def calculate_success_rate
