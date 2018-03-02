@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Data::Transpose::Binomial::Runner do
+describe Data::Transpose::Runner do
   let(:times) { 1 }
   let(:total) { times * throws * segments }
   let(:segments) { 3 }

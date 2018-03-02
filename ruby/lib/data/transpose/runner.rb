@@ -1,4 +1,4 @@
-class Data::Transpose::Binomial
+module Data::Transpose
   class Runner
     attr_reader :times, :segments, :experiment, :output
 

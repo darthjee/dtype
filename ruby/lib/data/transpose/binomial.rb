@@ -1,6 +1,5 @@
 class Data::Transpose::Binomial
   autoload :Experiment, 'data/transpose/binomial/experiment'
-  autoload :Runner,     'data/transpose/binomial/runner'
 
   delegate :run, to: :runner
 
@@ -13,7 +12,7 @@ class Data::Transpose::Binomial
   default_value :output_path, Utils::FilesLoader.data.transpose.binomial.dat
 
   def runner
-    @runner ||= Runner.new(times, segments, experiment, source, output)
+    @runner ||= Data::Transpose::Runner.new(times, segments, experiment, source, output)
   end
 
   def experiment
