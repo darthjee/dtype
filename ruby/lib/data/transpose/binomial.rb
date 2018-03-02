@@ -12,7 +12,7 @@ class Data::Transpose::Binomial
   default_value :output_path, Utils::FilesLoader.data.transpose.binomial.dat
 
   def runner
-    @runner ||= Data::Transpose::Runner.new(times, segments, experiment, source, output)
+    @runner ||= Data::Transpose::Runner.new(times, segments, experiment, output)
   end
 
   def experiment
