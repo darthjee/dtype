@@ -8,7 +8,7 @@ describe Data::Transpose::Binomial::Runner do
   let(:source) { Data::Source.new(Utils::FilesLoader.file('fixtures/data/source.dat')) }
   let(:output) { double(File, close: nil) }
   subject do
-    described_class.new(times, segments, experiment, source, output)
+    described_class.new(times, segments, experiment, output)
   end
   before do
     allow(output).to receive(:write) do |value|
@@ -21,7 +21,7 @@ describe Data::Transpose::Binomial::Runner do
   describe '#run' do
     context 'when having a simple experiment' do
       let(:experiment) do
-        double(Data::Transpose::Binomial::Experiment, reset: nil)
+        double(Data::Transpose::Binomial::Experiment, reset: nil, source: source)
       end
       before do
         allow(experiment).to receive(:success_rate) do

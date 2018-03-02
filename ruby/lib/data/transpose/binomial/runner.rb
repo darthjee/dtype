@@ -1,12 +1,11 @@
 class Data::Transpose::Binomial
   class Runner
-    attr_reader :times, :segments, :experiment, :source, :output
+    attr_reader :times, :segments, :experiment, :output
 
-    def initialize(times, segments , experiment, source, output)
+    def initialize(times, segments , experiment, output)
       @times = times
       @segments = segments
       @experiment = experiment
-      @source = source
       @output = output
     end
 
@@ -17,7 +16,7 @@ class Data::Transpose::Binomial
         output.write("#{key}\t#{value * 1.0 / times}\n")
       end
       output.close
-      source.close
+      experiment.source.close
     end
 
     def [](value)
