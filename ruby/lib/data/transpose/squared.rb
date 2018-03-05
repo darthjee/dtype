@@ -1,23 +1,29 @@
 class Data::Transpose::Squared
-  autoload :Runner, 'data/transpose/squared/runner'
+  autoload :Experiment, 'data/transpose/squared/experiment'
   
   delegate :run, to: :runner
 
   private
 
+  default_value :times,       ::Transpose::BINOMIAL_TOTAL
+  default_value :segments,    ::Transpose::BINOMIAL_SEGMENTS
+  default_value :source_path, Utils::FilesLoader.data.random_source
+  default_value :output_path, Utils::FilesLoader.data.transpose.squared.dat
+
   def runner
-    @runner ||= Runner.new(times, segments, source, file)
+    @runner ||= Data::Transpose::Runner.new(times, segments, experiment, file)
   end
 
-  default_value :times, ::Transpose::BINOMIAL_TOTAL
-  default_value :segments, ::Transpose::BINOMIAL_SEGMENTS
+  def experiment
+    Experiment.new(source)
+  end
 
   def source
-    @source ||= Data::Source.new(Utils::FilesLoader.data.random_source)
+    @source ||= Data::Source.new(source_path)
   end
 
   def file
-    @file ||= File.open(Utils::FilesLoader.data.transpose.squared.dat, 'w')
+    @file ||= File.open(output_path, 'w')
   end
 end
 
