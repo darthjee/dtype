@@ -1,50 +1,29 @@
 class Data::Transpose::Squared
-  def run
-    prepare
-    data.each do |key, value|
-      file.write("#{key}\t#{value * 1.0 / times * segments}\n")
-    end
-    file.close
-    source.close
-  end
-
-  def [](value)
-    data[value] ||= 0
-  end
-
-  def []=(key, value)
-    data[key] = value
-  end
+  autoload :Experiment, 'data/transpose/squared/experiment'
+  
+  delegate :run, to: :runner
 
   private
 
-  default_value :times, ::Transpose::BINOMIAL_TOTAL
-  default_value :segments, ::Transpose::BINOMIAL_SEGMENTS
+  default_value :times,       ::Transpose::BINOMIAL_TOTAL
+  default_value :segments,    ::Transpose::BINOMIAL_SEGMENTS
+  default_value :source_path, Utils::FilesLoader.data.random_source
+  default_value :output_path, Utils::FilesLoader.data.transpose.squared.dat
+
+  def runner
+    @runner ||= Data::Transpose::Runner.new(times, segments, experiment, file)
+  end
+
+  def experiment
+    Experiment.new(source)
+  end
 
   def source
-    @source ||= Data::Source.new(Utils::FilesLoader.data.random_source)
-  end
-
-  def prepare
-    times.times do
-      register(source.get)
-    end
-  end
-
-  def register(value)
-    self[normalized(value)] += 1
-  end
-
-  def normalized(value)
-    (value * segments).to_i * 1.0 / segments
-  end
-
-  def data
-    @data ||= {}
+    @source ||= Data::Source.new(source_path)
   end
 
   def file
-    @file ||= File.open(Utils::FilesLoader.data.transpose.squared.dat, 'w')
+    @file ||= File.open(output_path, 'w')
   end
 end
 

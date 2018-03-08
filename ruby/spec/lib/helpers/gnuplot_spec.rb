@@ -2,55 +2,75 @@ require 'spec_helper'
 
 RSpec.describe Helpers::Gnuplot do
   subject do
-    Utils::Template.new(input, output, variables, helpers)
-  end
-
-  let(:helpers) { [ described_class ] }
-  let(:input) { Utils::FilesLoader.file 'fixtures/templates/gnuplot_sample.erb' }
-  let(:variables) { {} }
-  let(:output) { Utils::FilesLoader.file 'output/gnuplot_sample.gnu' }
-  let(:output_file) { File.open(output, 'r') }
-  let(:output_text) { output_file.read }
-
-  before do
-    subject.build
+    Class.new() do
+      include Helpers::Gnuplot
+    end.new
   end
 
   describe '#range' do
     context 'when range is well defined' do
       it 'generates a range' do
-        expect(output_text).to include('defined range: [1:10]')
+        expect(subject.range([1,10])).to eq('[1:10]')
       end
     end
     context 'when range has no left limit' do
       it 'generates a range' do
-        expect(output_text).to include('no left range: [*:10]')
+        expect(subject.range([nil,10])).to eq('[*:10]')
       end
     end
     context 'when range has no right limit' do
       it 'generates a range' do
-        expect(output_text).to include('no right range: [1:*]')
+        expect(subject.range([1,nil])).to eq('[1:*]')
       end
     end
     context 'when range has no limits' do
       it 'generates a range' do
-        expect(output_text).to include('no limits range: [*:*]')
+        expect(subject.range([nil, nil])).to eq('[*:*]')
       end
     end
     context 'when one range is missing' do
       it 'completes with no limit' do
-        expect(output_text).to include('missing range: [1:*]')
+        expect(subject.range([1,nil])).to eq('[1:*]')
       end
     end
     context 'missing all range' do
       it 'completes with no limit' do
-        expect(output_text).to include('missing all range: [*:*]')
+        expect(subject.range([])).to eq('[*:*]')
       end
     end
     context 'passing nil' do
       it 'completes with no limit' do
-        expect(output_text).to include('nil range: [*:*]')
+        expect(subject.range(nil)).to eq('[*:*]')
       end
+    end
+  end
+
+  describe '#plot_line' do
+    context 'when plot is a data source' do
+      let(:plot) { ::Gnuplot::Plot::Data.new(attributes) }
+      let(:with) { nil }
+      let(:attributes) do
+        {
+          input: 'input.dat',
+          title: 'The Data',
+          x_column: 3,
+          with: with
+        }
+      end
+      it 'plots the data' do
+        expect(subject.plot_line(plot)).to eq("'input.dat' using ($3):($2) t 'The Data'")
+      end
+
+      context 'and passing the plotting type' do
+        let(:with) { :boxes }
+        it 'plots the data' do
+          expect(subject.plot_line(plot)).to eq("'input.dat' using ($3):($2) t 'The Data' w boxes")
+        end
+      end
+    end
+
+    context 'when passing a function' do
+      xit 'write function plot scenario'
     end
   end
 end

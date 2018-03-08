@@ -17,6 +17,8 @@ class Data
   
     def close
       file.close
+      @file = nil
+      @mode = 'r'
     end
   
     private

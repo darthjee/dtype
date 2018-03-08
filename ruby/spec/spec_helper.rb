@@ -1,10 +1,13 @@
 if ENV['COVERAGE']
   require 'simplecov'
-  SimpleCov.start
+  SimpleCov.start do
+    add_filter /_spec/
+  end
   require 'initializer'
   Dir[File.expand_path('../../lib/**/*.rb', __FILE__)].each { |f| require f }
 end
 
+Bundler.require(:test)
 require 'initializer'
 Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
 

@@ -8,9 +8,9 @@ default: &default
         dat: 'data/transpose/squared.dat'
   transpose:
     binomial:
-      segments: 100
-      times: 5000
-      throws: 50
+      segments: 10
+      times: 50000
+      throws: 25
 
 production:
   <<: *default
@@ -19,9 +19,9 @@ development: &development
   <<: *default
   transpose:
     binomial:
-      segments: 10
+      segments: 5
       times: 50
-      throws: 5
+      throws: 10
 
 pre:
   <<: *default
