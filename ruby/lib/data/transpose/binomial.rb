@@ -1,5 +1,6 @@
 class Data::Transpose::Binomial
   autoload :Experiment, 'data/transpose/binomial/experiment'
+  autoload :Result,     'data/transpose/binomial/result'
 
   delegate :run, to: :runner
 
