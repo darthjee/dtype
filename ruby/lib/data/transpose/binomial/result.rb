@@ -6,18 +6,14 @@ class Data::Transpose::Binomial::Result
   end
 
   def average
-    @average ||= calculate_average
+    @average ||= Math.average(frequencies)
   end
 
   def variance
-    Math.average(variances)
+    @variance ||= Math.average(variances)
   end
   
   private
-
-  def calculate_average
-    Math.average(frequencies)
-  end
 
   def frequencies
     @frequencies ||= load_frequencies
