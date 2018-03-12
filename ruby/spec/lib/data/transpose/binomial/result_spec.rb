@@ -34,7 +34,7 @@ describe Data::Transpose::Binomial::Result do
       let(:fixture_name) { 'binomial_simple.dat' }
 
       it 'calculates the variance' do
-        expect(subject.variance).to eq(0.25)
+        expect(subject.variance).to eq(0.5)
       end
     end
   end

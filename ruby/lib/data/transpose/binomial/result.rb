@@ -24,9 +24,10 @@ class Data::Transpose::Binomial::Result
   end
 
   def variances
-    frequencies.map do |x, f|
-      [(x - average) ** 2, f]
-    end.to_h
+    frequencies.inject(Hash.new { 0 }) do |out, (x, f)|
+      out[(x - average) ** 2] += f
+      out
+    end
   end
 
   def load_frequencies
