@@ -8,17 +8,25 @@ class Data::Transpose::Binomial::Result
   def average
     @average ||= calculate_average
   end
+
+  def variance
+    Math.average(variances)
+  end
   
   private
 
   def calculate_average
-    frequencies.inject(0) do |sum, values|
-      sum + values.inject { |a,b| a * b }
-    end / frequencies.values.sum
+    Math.average(frequencies)
   end
 
   def frequencies
     @frequencies ||= load_frequencies
+  end
+
+  def variances
+    frequencies.map do |x, f|
+      [(x - average) ** 2, f]
+    end.to_h
   end
 
   def load_frequencies

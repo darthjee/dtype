@@ -9,6 +9,7 @@ autoload :Gnuplot,       'gnuplot'
 autoload :Configuration, 'configuration'
 
 require 'darthjee/core_ext/object/default_value'
+require 'darthjee/core_ext/math'
 
 require 'core'
 require 'data'
