@@ -12,6 +12,10 @@ class Data::Transpose::Binomial::Result
   def variance
     @variance ||= Math.average(variances)
   end
+
+  def gaussian
+    Function::Gauss.new
+  end
   
   private
 

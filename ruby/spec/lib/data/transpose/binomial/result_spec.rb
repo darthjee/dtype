@@ -38,4 +38,10 @@ describe Data::Transpose::Binomial::Result do
       end
     end
   end
+
+  describe '#gaussian' do
+    it do
+      expect(subject.gaussian).to be_a(Function::Gauss)
+    end
+  end
 end
