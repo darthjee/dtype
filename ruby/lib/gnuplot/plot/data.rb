@@ -3,11 +3,9 @@ class Gnuplot::Plot::Data < Gnuplot::Plot
 
   private
 
-  def default_attributes
-    {
-      x_column: 1,
-      y_column: 2
-    }
-  end
+  default_value :default_attributes, {
+    x_column: 1,
+    y_column: 2
+  }
 end
 
