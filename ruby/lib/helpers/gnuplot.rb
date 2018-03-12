@@ -19,7 +19,7 @@ module Helpers
     end
 
     def plot_function(plot)
-      plot.to_gnu
+      plot.name
     end
 
     def plot_data_line(plot)
@@ -30,6 +30,10 @@ module Helpers
       ].tap do |args|
         args << "w #{plot.with}" if plot.with
       end.join(' ')
+    end
+
+    def define(function)
+      function.to_gnu
     end
   end
 end

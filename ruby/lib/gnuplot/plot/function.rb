@@ -7,6 +7,11 @@ class Gnuplot::Plot::Function < Gnuplot::Plot
     function.to_gnu
   end
 
+
+  def name
+    function.name.to_gnu
+  end
+
   private
 
   def default_attributes

@@ -8,6 +8,11 @@ set notitle
 set size 0.6,0.6
 set term postscript eps mono
 set out "<%= @output %>"
+
+<% @functions.each do |f| %>
+  <%= define(f) %>
+<% end %>
+
 plot <% @plots.each do |plot| %> \
        <%= plot_line(plot) %>, \
      <% end %>
