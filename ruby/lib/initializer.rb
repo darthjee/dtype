@@ -15,6 +15,7 @@ require 'darthjee/core_ext/math'
 require 'core'
 require 'data'
 require 'yaml'
+require 'danica'
 
 Utils::FilesLoader.root = File.expand_path('../../../', __FILE__)
 

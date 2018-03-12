@@ -14,7 +14,10 @@ class Data::Transpose::Binomial::Result
   end
 
   def gaussian
-    Function::Gauss.new
+    @gaussian ||= Function::Gauss.new(
+      average: average,
+      variance_root: Math.sqrt(variance)
+    )
   end
   
   private
