@@ -14,7 +14,8 @@ build_$(TARGET):
 	TEXDIR=$$(/bin/bash -c 'cd ../../tex; pwd'); \
 	OUT=$$TEXDIR/$(TARGET).tex; \
 	IN=doc.tex.erb; \
-	make TARGET=$(TARGET) OUT=$$OUT IN=$$CURRENTDIR/$$IN $$OUT
+	mkdir $${OUT%.tex}; \
+	make TARGET=$(TARGET) OUT=$$OUT IN=$$CURRENTDIR/$$IN $$OUT; \
 	make TARGET=$(TARGET) build_$(TARGET)_parts
 
 build_$(TARGET)_parts:
