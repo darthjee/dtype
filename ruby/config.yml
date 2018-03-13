@@ -7,6 +7,9 @@ default: &default
       squared:
         dat: 'data/transpose/squared.dat'
   transpose:
+    squared:
+      segments: 250
+      times: 50000
     binomial:
       segments: 10
       times: 50000
@@ -18,6 +21,9 @@ production:
 development: &development
   <<: *default
   transpose:
+    squared:
+      segments: 10
+      times: 250
     binomial:
       segments: 5
       times: 50
@@ -26,6 +32,9 @@ development: &development
 pre:
   <<: *default
   transpose:
+    squared:
+      segments: 20
+      times: 500
     binomial:
       segments: 20
       times: 100
