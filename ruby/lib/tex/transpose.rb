@@ -1,5 +1,4 @@
 class Tex::Transpose < Tex
-  include Helpers::Tex
   autoload :Introduction, 'tex/transpose/introduction'
 
   def initialize(input, output)
