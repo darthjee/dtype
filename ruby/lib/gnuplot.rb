@@ -16,7 +16,12 @@ class Gnuplot < Utils::Template
       xlabel: x_label,
       ylabel: y_label,
       output: eps_output,
-      plots: plots
+      plots: plots,
+      functions: functions
     }
+  end
+
+  def functions
+    plots.select { |p| p.is_a?(Gnuplot::Plot::Function) }
   end
 end

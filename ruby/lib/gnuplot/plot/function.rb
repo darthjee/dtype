@@ -1,19 +1,11 @@
 require 'danica'
 
 class Gnuplot::Plot::Function < Gnuplot::Plot
-  def to_gnu
-    function.to_gnu
-  end
+  attr_accessor :function
+  delegate :to_gnu, to: :function
 
-  private
-
-  def function
-    Danica.build(:x) { x ** 2 }
-  end
-
-  def default_attributes
-    {
-    }
+  def name
+    function.name.to_gnu
   end
 end
 

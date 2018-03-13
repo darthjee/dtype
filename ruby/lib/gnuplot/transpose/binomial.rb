@@ -8,12 +8,28 @@ class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
 
   def plots
     [
-      Gnuplot::Plot::Function.new,
+      gauss_plot,
       Gnuplot::Plot::Data.new({
-        input: Utils::FilesLoader.data.transpose.binomial.dat,
+        input: file_name,
         with: :boxes
       })
     ]
   end
+
+  private
+
+  def gauss_plot
+    Gnuplot::Plot::Function.new(function: gauss)
+  end
+
+  def gauss
+    Data::Transpose::Binomial::Result.new(file).gaussian
+  end
+
+  def file
+    File.open(file_name, 'r')
+  end
+
+  default_value :file_name, Utils::FilesLoader.data.transpose.binomial.dat
 end
 

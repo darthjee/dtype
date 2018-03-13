@@ -9,4 +9,8 @@ class Gnuplot::Plot
   def initialize(attributes = {})
     assign_attributes(default_attributes.merge(attributes))
   end
+
+  private
+  
+  default_value :default_attributes, {}
 end
