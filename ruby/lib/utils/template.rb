@@ -1,7 +1,7 @@
 class Utils::Template
   attr_reader :input, :output, :variables, :helpers
 
-  def initialize(input, output, variables, helpers = [])
+  def initialize(input, output, variables = {}, helpers = [])
     @input = input
     @output = output
     @variables = variables

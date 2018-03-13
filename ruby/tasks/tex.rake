@@ -9,7 +9,7 @@ namespace :tex do
 
     class_path = name.split('/').unshift('tex')
 
-    project_class = class_path.loader.constantize
+    project_class = class_path.loader.constantize || Tex
 
     project_class.new(input, output).build
   end
