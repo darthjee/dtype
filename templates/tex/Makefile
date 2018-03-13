@@ -23,7 +23,9 @@ build_$(TARGET)_parts:
 	for IN in $(TARGET)/*.erb; do \
 	  OUT=$$TEXDIR/$$IN; \
 	  OUT=$${OUT%.erb}; \
-	  make TARGET=$(TARGET) OUT=$$OUT IN=$$CURRENTDIR/$$IN $$OUT; \
+	  NAME=$${OUT%.tex}; \
+	  NAME=$${NAME##*/}; \
+	  make TARGET=$(TARGET)/$$NAME OUT=$$OUT IN=$$CURRENTDIR/$$IN $$OUT; \
 	done
 
 $(OUT): $(IN) $(REQUIREMENTS)
@@ -37,5 +39,11 @@ clean:
 clean_$(TARGET):
 	TEXDIR=$$(/bin/bash -c 'cd ../../tex; pwd'); \
 	OUT=$$TEXDIR/$(TARGET).tex; \
-	rm -f $$OUT
+	rm -f $$OUT; \
+	CURRENTDIR=$$(pwd); \
+	for IN in $(TARGET)/*.erb; do \
+	  OUT=$$TEXDIR/$$IN; \
+	  OUT=$${OUT%.erb}; \
+	  rm -f $$OUT; \
+	done
 
