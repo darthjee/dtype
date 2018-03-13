@@ -40,10 +40,5 @@ clean_$(TARGET):
 	TEXDIR=$$(/bin/bash -c 'cd ../../tex; pwd'); \
 	OUT=$$TEXDIR/$(TARGET).tex; \
 	rm -f $$OUT; \
-	CURRENTDIR=$$(pwd); \
-	for IN in $(TARGET)/*.erb; do \
-	  OUT=$$TEXDIR/$$IN; \
-	  OUT=$${OUT%.erb}; \
-	  rm -f $$OUT; \
-	done
-
+	OUT=$${OUT%.tex}; \
+	rm -rf $$OUT; \
