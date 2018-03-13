@@ -3,21 +3,21 @@
 We may use statistics to understand binomial events that are models where
 two alternatives are presented, option A or option B.
 
-Some common binomial models are being born a female or male, having or not an specif genetic trait,
+Some common binomial models are, being born a female or male, having or not an specif genetic trait,
 or even a success or failure on the toss of a coin or dice, which can usually
-be simulated with the generation of a random number (equivalent of the toss of a dice in the discrete universe),
-and the check it against a threashold that would define it as being
+be simulated with the generation of a random number (equivalent of the toss of a dice in the discrete universe)
+and then check it against a threashold that would define it as being
 option A or B, or success or failure if you will.
 
-An example would be the toss of a $20$ sided dice and set the threashold as $16$ so any value higher
-than that is considered a success givin us a $25\%$ success rate.
+An example would be the toss of a $20$ sided dice and set the threashold as $10$ so any value higher
+than that is considered a success giving us a $50\%$ success rate.
 
 In order to simulate this toss, we use a square probability distribuited (fig \ref{intro:squared}) number generator
 where every number has the same probability of comming out, varaying from the range of 0 to 1
-then compare it with the equivalent threashold ($0.75$ for a $25\%$ success rate) to determin if an event was
+then compare it with the equivalent threashold ($0.5$ for a $50\%$ success rate) to determin if an event was
 a success or failure.
 
-We repete the procediment \introexperimentsize{} times so that we can obtein the given success rate of that experiment
+We repete the procediment \introexperimentsize{} times so that we can obtein the given success rate of that experiment,
 which may be different from the theoretical expected success rate, but by repeating the experiment
 \introexperimentrepeats{} times we can build an histogram of success rate which should have it's peak around the
 expected success rate.
