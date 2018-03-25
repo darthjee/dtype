@@ -35,9 +35,9 @@ development: &development
       times: 50
       throws: 10
     average:
-      segments: 5
+      segments: 10
       times: 50
-      throws: 10
+      throws: 5
 
 pre:
   <<: *default
