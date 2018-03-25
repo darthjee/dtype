@@ -6,4 +6,8 @@ class Transpose
 
   SQUARED_SEGMENTS  = Configuration.transpose.squared.segments
   SQUARED_TIMES     = Configuration.transpose.squared.times
+
+  AVERAGE_THROWS    = Configuration.transpose.average.throws
+  AVERAGE_SEGMENTS  = Configuration.transpose.average.segments
+  AVERAGE_TIMES     = Configuration.transpose.average.times
 end
