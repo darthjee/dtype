@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Data::Transpose::Binomial::Result do
+describe Data::Transpose::Result do
   let(:file) { File.open(file_path, 'r') }
   let(:fixture_name) { 'binomial.dat' }
   let(:file_path) do

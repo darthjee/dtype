@@ -1,9 +1,8 @@
 class Tex::Transpose < Tex
-  include Helpers::Tex
-  
+  autoload :Introduction, 'tex/transpose/introduction'
 
   def initialize(input, output)
-    super(:transpose, input, output, default_variables)
+    super(input, output, default_variables)
   end
 
   def default_variables

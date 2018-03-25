@@ -5,6 +5,7 @@ eps
 
 data/*/
 tex/*.tex
+tex/**/*.tex
 gnuplot/transpose
 ruby/coverage
 ruby/spec/output/*

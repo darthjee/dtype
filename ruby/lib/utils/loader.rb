@@ -9,6 +9,11 @@ module Utils
     end
 
     def constantize
+      constantize!
+    rescue NameError
+    end
+
+    def constantize!
       array.map(&:camelize).join('::').constantize
     end
   end

@@ -1,0 +1,62 @@
+\section{Introduction}
+
+We may use statistics to understand binomial events that are models where
+two alternatives are presented, option A or option B.
+
+Some common binomial models can be, being born a female or male, having or not an specif genetic trait,
+or even a success or failure on the toss of a coin or dice, which can usually
+be simulated with the generation of a random number (equivalent of the toss of a dice in the discrete universe)
+and then check it against a threashold that would define it as being
+option A or B, or success or failure if you will.
+
+An example would be the toss of a $20$ sided dice and set the threashold as $10$ so any value higher
+than that is considered a success giving us a $50\%$ success rate.
+
+In order to simulate this toss, we use a square probability distribuited (fig \ref{intro:squared}) number generator
+and then, use that result as a success/failure result (compared with a success threashold).
+By repeating the procediment, we can have a success rate which follows the normal or gaussian
+distribuition (fig \ref{intro:binomial}).
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\epsfig{file=../eps/transpose/squared.eps, scale=1, angle=0}
+\caption{Squared distribuition}
+\label{intro:squared}
+\end{center}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\epsfig{file=../eps/transpose/binomial.eps, scale=1, angle=0}
+\caption{Binomial experiment distribuition}
+\label{intro:binomial}
+\end{center}
+\end{figure}
+\end{center}
+
+The normal or gaussian probability distribuirion dictates a probability has it's peak at the
+average $<%= @gaussian.average %>$ and having the distribuition dropping on the edges, but
+never being zero (non probable events have a minor chance of happening).
+
+\begin{center}
+\begin{equation}
+<%= @gaussian %>
+\label{intro:gaussian}
+\end{equation}
+\end{center}
+
+One way to have a normal (gaussian) distribuition random number generator, is to also generate several random numbers
+and calculate their average threating this final number as the random number.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\epsfig{file=../eps/transpose/average.eps, scale=1, angle=0}
+\caption{Gaussian distribuition}
+\label{intro:average}
+\end{center}
+\end{figure}
+\end{center}

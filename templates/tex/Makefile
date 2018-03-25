@@ -2,6 +2,7 @@ RUBYDIR=../../ruby
 RUNNER=rake
 TARGETS=transpose
 DIR=
+REQUIREMENTS=$(find ../../ruby -type f)
 
 all:
 	for TARGET in $(TARGETS); do \
@@ -13,8 +14,20 @@ build_$(TARGET):
 	TEXDIR=$$(/bin/bash -c 'cd ../../tex; pwd'); \
 	OUT=$$TEXDIR/$(TARGET).tex; \
 	IN=doc.tex.erb; \
-	REQUIREMENTS=$$(/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) tex:requirements[$(TARGET)]'); \
-	make TARGET=$(TARGET) OUT=$$OUT IN=$$CURRENTDIR/$$IN REQUIREMENTS="$$REQUIREMENTS" $$OUT
+	mkdir $${OUT%.tex}; \
+	make TARGET=$(TARGET) OUT=$$OUT IN=$$CURRENTDIR/$$IN $$OUT; \
+	make TARGET=$(TARGET) build_$(TARGET)_parts
+
+build_$(TARGET)_parts:
+	CURRENTDIR=$$(pwd); \
+	TEXDIR=$$(/bin/bash -c 'cd ../../tex; pwd'); \
+	for IN in $(TARGET)/*.erb; do \
+	  OUT=$$TEXDIR/$$IN; \
+	  OUT=$${OUT%.erb}; \
+	  NAME=$${OUT%.tex}; \
+	  NAME=$${NAME##*/}; \
+	  make TARGET=$(TARGET)/$$NAME OUT=$$OUT IN=$$CURRENTDIR/$$IN $$OUT; \
+	done
 
 $(OUT): $(IN) $(REQUIREMENTS)
 	/bin/bash -c 'cd $(RUBYDIR); $(RUNNER) tex:build[$(TARGET),$(IN),$(OUT)]'
@@ -27,5 +40,6 @@ clean:
 clean_$(TARGET):
 	TEXDIR=$$(/bin/bash -c 'cd ../../tex; pwd'); \
 	OUT=$$TEXDIR/$(TARGET).tex; \
-	rm -f $$OUT
-
+	rm -f $$OUT; \
+	OUT=$${OUT%.tex}; \
+	rm -rf $$OUT; \

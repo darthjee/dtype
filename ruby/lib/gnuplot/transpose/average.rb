@@ -1,9 +1,9 @@
-class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
+class Gnuplot::Transpose::Average < Gnuplot::Transpose
   def initialize(input, output)
-    super(:binomial, input, output)
+    super(:average, input, output)
   end
 
-  default_value :x_label, 'Success Rate'
+  default_value :x_label, 'Random Number'
   default_value :y_label, 'Frequency'
 
   def plots
@@ -30,6 +30,6 @@ class Gnuplot::Transpose::Binomial < Gnuplot::Transpose
     File.open(file_name, 'r')
   end
 
-  default_value :file_name, Utils::FilesLoader.data.transpose.binomial.dat
+  default_value :file_name, Utils::FilesLoader.data.transpose.average.dat
 end
 

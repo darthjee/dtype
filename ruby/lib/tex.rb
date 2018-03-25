@@ -1,11 +1,4 @@
 class Tex < Utils::Template
+  include Helpers::Tex
   autoload :Transpose, 'tex/transpose'
-
-  attr_reader :name
-
-  def initialize(name, input, output, variables)
-    @name = name
-
-    super(input, output, variables)
-  end
 end

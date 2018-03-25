@@ -5,8 +5,8 @@ class Data::Transpose::Squared
 
   private
 
-  default_value :times,       ::Transpose::BINOMIAL_TOTAL
-  default_value :segments,    ::Transpose::BINOMIAL_SEGMENTS
+  default_value :times,       ::Transpose::SQUARED_TIMES
+  default_value :segments,    ::Transpose::SQUARED_SEGMENTS
   default_value :source_path, Utils::FilesLoader.data.random_source
   default_value :output_path, Utils::FilesLoader.data.transpose.squared.dat
 

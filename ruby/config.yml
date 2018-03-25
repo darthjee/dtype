@@ -6,8 +6,17 @@ default: &default
         dat: 'data/transpose/binomial.dat'
       squared:
         dat: 'data/transpose/squared.dat'
+      average:
+        dat: 'data/transpose/average.dat'
   transpose:
+    squared:
+      segments: 250
+      times: 50000
     binomial:
+      segments: 10
+      times: 50000
+      throws: 25
+    average:
       segments: 10
       times: 50000
       throws: 25
@@ -18,15 +27,29 @@ production:
 development: &development
   <<: *default
   transpose:
+    squared:
+      segments: 10
+      times: 250
     binomial:
       segments: 5
       times: 50
       throws: 10
+    average:
+      segments: 10
+      times: 50
+      throws: 5
 
 pre:
   <<: *default
   transpose:
+    squared:
+      segments: 20
+      times: 500
     binomial:
+      segments: 20
+      times: 100
+      throws: 25
+    average:
       segments: 20
       times: 100
       throws: 25
