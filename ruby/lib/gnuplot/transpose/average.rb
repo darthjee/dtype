@@ -30,6 +30,6 @@ class Gnuplot::Transpose::Average < Gnuplot::Transpose
     File.open(file_name, 'r')
   end
 
-  default_value :file_name, Utils::FilesLoader.data.transpose.binomial.dat
+  default_value :file_name, Utils::FilesLoader.data.transpose.average.dat
 end
 
