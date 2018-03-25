@@ -20,6 +20,11 @@ default: &default
       segments: 10
       times: 50000
       throws: 25
+  eps:
+    transpose:
+      squared: 'eps/transpose/squared.eps'
+      binomial: 'eps/transpose/binomial.eps'
+      average: 'eps/transpose/average.eps'
 
 production:
   <<: *default
