@@ -23,7 +23,7 @@ class Gnuplot::Transpose::Average < Gnuplot::Transpose
   end
 
   def gauss
-    Data::Transpose::Binomial::Result.new(file).gaussian
+    Data::Transpose::Result.new(file).gaussian
   end
 
   def file

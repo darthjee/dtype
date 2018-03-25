@@ -6,5 +6,6 @@ class Data
     autoload :Binomial, 'data/transpose/binomial'
     autoload :Average,  'data/transpose/average'
     autoload :Runner,   'data/transpose/runner'
+    autoload :Result,   'data/transpose/result'
   end
 end

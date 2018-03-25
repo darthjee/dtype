@@ -1,4 +1,4 @@
-class Data::Transpose::Binomial::Result
+class Data::Transpose::Result
   attr_reader :file
 
   def initialize(file)
