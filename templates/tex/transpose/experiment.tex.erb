@@ -1,0 +1,11 @@
+
+
+In order to simulate this toss, we use a square probability distribuited (fig \ref{intro:squared}) number generator
+where every number has the same probability of comming out, varaying from the range of 0 to 1
+then compare it with the equivalent threashold ($0.5$ for a $50\%$ success rate) to determin if an event was
+a success or failure.
+
+We repete the procediment \introexperimentsize{} times so that we can obtein the given success rate of that experiment,
+which may be different from the theoretical expected success rate, but by repeating the experiment
+\introexperimentrepeats{} times we can build an histogram of success rate which should have it's peak around the
+expected success rate.
