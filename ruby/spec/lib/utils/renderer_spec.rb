@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Utils::Template do
+RSpec.describe Utils::Renderer do
   subject do
     described_class.new(input, output, variables, helpers)
   end

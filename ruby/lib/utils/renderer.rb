@@ -1,4 +1,4 @@
-class Utils::Template
+class Utils::Renderer
   attr_reader :input, :output, :variables, :helpers
 
   def initialize(input, output, variables = {}, helpers = [])
