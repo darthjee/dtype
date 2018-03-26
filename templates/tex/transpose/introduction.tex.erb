@@ -17,9 +17,9 @@ and then, use that result as a success/failure result (compared with a success t
 By repeating the procediment, we can have a success rate which follows the normal or gaussian
 distribuition (fig \ref{intro:binomial}).
 
-<%= @squared_graph %>
+<%= figure @squared_graph %>
 
-<%= @binomial_graph %>
+<%= figure @binomial_graph %>
 
 The normal or gaussian probability distribuirion dictates a probability has it's peak at the
 average $<%= @gaussian.average %>$ and having the distribuition dropping on the edges, but
@@ -35,4 +35,4 @@ never being zero (non probable events have a minor chance of happening).
 One way to have a normal (gaussian) distribuition random number generator, is to also generate several random numbers
 and calculate their average threating this final number as the random number.
 
-<%= @average_graph %>
+<%= figure @average_graph %>
