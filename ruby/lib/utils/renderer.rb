@@ -1,7 +1,13 @@
 class Utils::Renderer
   attr_reader :input, :output, :variables, :helpers
 
-  def initialize(input, output, variables = {}, helpers = [])
+  class << self
+    def helpers
+      @helpers ||= []
+    end
+  end
+
+  def initialize(input, output, variables = {}, helpers = self.class.helpers)
     @input = input
     @output = output
     @variables = variables
