@@ -22,11 +22,12 @@ class Utils::Template
   end
 
   def build_builder
-    Utils::ErbBuilder.new(input_stream, variables).tap do |builder|
-      helpers.each do |helper|
-        eval("class << builder\ninclude #{helper}\nend")
+    hs = helpers
+    Class.new(Utils::ErbBuilder) do
+      hs.each do |helper|
+        include helper
       end
-    end
+    end.new(input_stream, variables)
   end
 
   def input_stream
