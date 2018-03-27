@@ -3,7 +3,9 @@ class Utils::Renderer
 
   class << self
     def helpers
-      @helpers ||= []
+      @helpers ||= [
+        Helpers::Renderer
+      ]
     end
   end
 

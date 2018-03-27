@@ -2,10 +2,9 @@ require 'spec_helper'
 
 describe Helpers::Renderer do
   subject do
-    Utils::Template.new(input, variables, helpers)
+    Utils::Template.new(input, variables)
   end
 
-  let(:helpers) { [ described_class ] }
   let(:input) { Utils::FilesLoader.file 'fixtures/templates/renderer_sample.erb' }
   let(:variables) { {} }
   let(:expected_file) { Utils::FilesLoader.file 'fixtures/templates/renderer_sample.txt' }

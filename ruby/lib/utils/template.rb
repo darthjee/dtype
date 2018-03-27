@@ -1,7 +1,15 @@
 class Utils::Template
   attr_reader :input, :variables, :helpers
 
-  def initialize(input, variables = {}, helpers = [])
+  class << self
+    def helpers
+      @helpers ||= [
+        Helpers::Renderer
+      ]
+    end
+  end
+
+  def initialize(input, variables = {}, helpers = self.class.helpers)
     @input = input
     @variables = variables
     @helpers = helpers
