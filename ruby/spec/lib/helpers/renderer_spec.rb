@@ -6,7 +6,7 @@ describe Helpers::Renderer do
   end
 
   let(:input) { Utils::FilesLoader.file 'fixtures/templates/renderer_sample.erb' }
-  let(:variables) { {} }
+  let(:variables) { { name: :test } }
   let(:expected_file) { Utils::FilesLoader.file 'fixtures/templates/renderer_sample.txt' }
   let(:expected) { File.open(expected_file, 'r').read }
 
