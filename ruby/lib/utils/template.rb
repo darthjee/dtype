@@ -9,10 +9,10 @@ class Utils::Template
     end
   end
 
-  def initialize(input, variables = {}, helpers = self.class.helpers)
+  def initialize(input, variables = {}, helpers = [])
     @input = input
     @variables = variables
-    @helpers = helpers
+    @helpers = self.class.helpers + helpers
   end
 
   def to_s
