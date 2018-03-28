@@ -1,27 +1,21 @@
-class Utils::Renderer
-  attr_reader :input, :output, :variables, :helpers
+module Utils
+  class Renderer < Template
+    attr_reader :output
 
-  def initialize(input, output, variables = {}, helpers = [])
-    @input = input
-    @output = output
-    @variables = variables
-    @helpers = helpers
-  end
+    def initialize(input, output, variables = {}, helpers = [])
+      @output = output
+      super(input, variables, helpers)
+    end
 
-  def build
-    output_file.write template
-    output_file.close
-  end
+    def build
+      output_file.write self
+      output_file.close
+    end
 
-  private
+    private
 
-  def output_file
-    @output_file ||= File.open(output, 'w')
-  end
-
-  def template
-    @template || Utils::Template.new(
-      input, variables, helpers
-    )
+    def output_file
+      @output_file ||= File.open(output, 'w')
+    end
   end
 end
