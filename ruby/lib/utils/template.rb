@@ -21,10 +21,6 @@ class Utils::Template
 
   private
 
-  def output_file
-    @output_file ||= File.open(output, 'w')
-  end
-
   def erb_builder
     @erb_builder ||= build_builder
   end
