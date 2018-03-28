@@ -1,10 +1,16 @@
 require 'spec_helper'
 
-module Utils::Template::DummyHelper
-end
+class Utils::Template
+  module DummyHelper
+  end
 
-class Utils::Template::Dummy < Utils::Template
-  self.helpers << Utils::Template::DummyHelper
+  module DummyHelper2
+  end
+
+  class Dummy < self
+    self.helpers << DummyHelper
+    helper DummyHelper2
+  end
 end
 
 RSpec.describe Utils::Template do
@@ -35,6 +41,12 @@ RSpec.describe Utils::Template do
     it 'isolates subclasses helpers' do
       expect(described_class::Dummy.helpers).to include(described_class::DummyHelper)
       expect(described_class.helpers).not_to include(described_class::DummyHelper)
+    end
+  end
+
+  describe '.helper' do
+    it 'adds a helper' do
+      expect(described_class::Dummy.helpers).to include(described_class::DummyHelper2)
     end
   end
 end

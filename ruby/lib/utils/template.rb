@@ -7,6 +7,10 @@ class Utils::Template
         Helpers::Renderer
       ]
     end
+
+    def helper(mod)
+      helpers << mod
+    end
   end
 
   def initialize(input, variables = {}, helpers = [])
