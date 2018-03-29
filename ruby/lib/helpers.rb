@@ -1,5 +1,6 @@
 module Helpers
-  autoload :Gnuplot, 'helpers/gnuplot'
-  autoload :Tex,     'helpers/tex'
-  autoload :Number,  'helpers/number'
+  autoload :Renderer, 'helpers/renderer'
+  autoload :Gnuplot,  'helpers/gnuplot'
+  autoload :Number,   'helpers/number'
+  autoload :Tex,      'helpers/tex'
 end

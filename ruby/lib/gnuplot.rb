@@ -1,4 +1,4 @@
-class Gnuplot < Utils::Template
+class Gnuplot < Utils::Renderer
   autoload :Base,      'gnuplot/base'
   autoload :Plot,      'gnuplot/plot'
   autoload :Transpose, 'gnuplot/transpose'

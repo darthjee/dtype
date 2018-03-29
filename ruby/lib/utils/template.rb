@@ -1,34 +1,41 @@
 class Utils::Template
-  attr_reader :input, :output, :variables, :helpers
+  attr_reader :input, :variables, :helpers
 
-  def initialize(input, output, variables = {}, helpers = [])
-    @input = input
-    @output = output
-    @variables = variables
-    @helpers = helpers
+  class << self
+    def helpers
+      @helpers ||= [
+        Helpers::Renderer
+      ]
+    end
+
+    def helper(mod)
+      helpers << mod
+    end
   end
 
-  def build
-    output_file.write erb_builder.result
-    output_file.close
+  def initialize(input, variables = {}, helpers = [])
+    @input = input
+    @variables = variables
+    @helpers = self.class.helpers + helpers
+  end
+
+  def to_s
+    erb_builder.result
   end
 
   private
-
-  def output_file
-    @output_file ||= File.open(output, 'w')
-  end
 
   def erb_builder
     @erb_builder ||= build_builder
   end
 
   def build_builder
-    Utils::ErbBuilder.new(input_stream, variables).tap do |builder|
-      helpers.each do |helper|
-        eval("class << builder\ninclude #{helper}\nend")
+    hs = helpers
+    Class.new(Utils::ErbBuilder) do
+      hs.each do |helper|
+        include helper
       end
-    end
+    end.new(input_stream, variables)
   end
 
   def input_stream
@@ -39,3 +46,4 @@ class Utils::Template
     @input_file ||= File.open(input)
   end
 end
+

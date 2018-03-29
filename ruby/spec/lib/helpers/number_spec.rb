@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Helpers::Number do
   subject do
-    Utils::Template.new(input, output, variables, helpers)
+    Utils::Renderer.new(input, output, variables, helpers)
   end
 
   let(:helpers) { [ described_class ] }
